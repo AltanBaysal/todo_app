@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/constants/text_constants.dart';
 import 'package:todo_app/controllers/todo_state.dart';
-import 'package:todo_app/screens/helper/duration_text_converter.dart';
+import 'package:todo_app/screens/helper/duration_text_converter_extension.dart';
+import 'package:todo_app/ui/svg_with_sized_box.dart';
 
 class MainPageTaskListTile extends StatelessWidget {
   const MainPageTaskListTile({
@@ -20,11 +21,12 @@ class MainPageTaskListTile extends StatelessWidget {
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       childrenPadding: EdgeInsets.symmetric(
           horizontal: width * 0.06, vertical: height * 0.01),
-      title: MainPageTaskListTileTitle(index: index),
-      children: [ //! burayı bir kere düzenle
+      title: _MainPageTaskListTileTitle(index: index),
+      children: [
+        //? aynı şeyi sürekli tekrar ediyorum consumer saolsun içinden çıkamadım
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "Importance Level : ${value.goals[index].importanceLevel.toString()}",
+            "${EnglishTexts.importanceLevel} : ${value.goals[index].importanceLevel.toString()}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -32,7 +34,7 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "Creation Date : ${value.goals[index].creationDate.toString().substring(0, 16)}",
+            "${EnglishTexts.creationDate} : ${value.goals[index].creationDate.toString().substring(0, 16)}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -40,7 +42,7 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "Deadline : ${value.goals[index].executionDate.toString().substring(0, 16)}",
+            "${EnglishTexts.deadline} : ${value.goals[index].executionDate.toString().substring(0, 16)}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -48,7 +50,7 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "Total Task Duration : ${convertDurationToText(value.goals[index].taskTotalDuration)}",
+            "${EnglishTexts.totalTaskDuration} : ${value.goals[index].taskTotalDuration.convertDurationToText()}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -56,7 +58,7 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "Remain Duration : ${convertDurationToText(value.goals[index].remainDuration)}",
+            "${EnglishTexts.remainDuration} : ${value.goals[index].remainDuration.convertDurationToText()}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -64,18 +66,20 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "Description : ${value.goals[index].description}",
+            "${EnglishTexts.description} : ${value.goals[index].description}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
         ),
+      
       ],
     );
   }
 }
 
-class MainPageTaskListTileTitle extends StatelessWidget {
-  const MainPageTaskListTileTitle({Key? key, required this.index})
+
+class _MainPageTaskListTileTitle extends StatelessWidget {
+  const _MainPageTaskListTileTitle({Key? key, required this.index})
       : super(key: key);
   final int index;
 
@@ -88,14 +92,11 @@ class MainPageTaskListTileTitle extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox(
-              height: height * 0.05,
-              width: height * 0.05,
-              child: Consumer<TodoState>(
-                builder: (_, value, __) => SvgPicture.asset(
-                  value.getGoalImportanceLevelSvgs(value.goals[index]),
-                  fit: BoxFit.cover,
-                ),
+            Consumer<TodoState>(
+              builder: (_, value, __) => SvgWithSizedBox(
+                height: height * 0.05,
+                width: width * 0.05,
+                svgAssets: value.getGoalImportanceLevelSvgs(value.goals[index]),
               ),
             ),
 
@@ -110,12 +111,12 @@ class MainPageTaskListTileTitle extends StatelessWidget {
             ),
           ],
         ),
-        
+
         Container(
           margin: EdgeInsets.only(left: width * 0.02),
           child: Consumer<TodoState>(
             builder: (_, value, __) => Text(
-              convertDurationToText(value.goals[index].remainDuration),
+              (value.goals[index].remainDuration.convertDurationToText()),
             ),
           ),
         ),

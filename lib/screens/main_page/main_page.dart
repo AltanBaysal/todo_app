@@ -8,31 +8,46 @@ class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    //double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const CreateEditTasksPage(),
-            ),
-          );
-        },
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(top: height * 0.005),
-        child: Consumer<TodoState>(
-          builder: (_, value, __) => ListView.builder(
-            itemCount: value.goals.length,
-            itemBuilder: (context, index) {
-              return MainPageTaskListTile(index: index);
-            },
+      floatingActionButton: const _MainPageFloatingActionButton(),
+      body: const _MainPageBody(),
+    );
+  }
+}
+
+//? bu kullanım sanki daha iyi ne düşünüyorsun ?
+class _MainPageFloatingActionButton extends StatelessWidget {
+  const _MainPageFloatingActionButton({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: const Icon(Icons.add),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CreateEditTasksPage(),
           ),
+        );
+      },
+    );
+  }
+}
+
+class _MainPageBody extends StatelessWidget {
+  const _MainPageBody({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    return Padding(
+      padding: EdgeInsets.only(top: height * 0.005),
+      child: Consumer<TodoState>(
+        builder: (_, value, __) => ListView.builder(
+          itemCount: value.goals.length,
+          itemBuilder: (context, index) {
+            return MainPageTaskListTile(index: index);
+          },
         ),
       ),
     );

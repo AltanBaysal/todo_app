@@ -16,4 +16,12 @@ class EnglishTexts{
   static const String enterDescription = "Enter a Description";
 
   static const String create = "Create";
+
+  static const String importanceLevel = "Importance Level";
+  static const String creationDate = "Creation Date";
+  static const String deadline = "Deadline";
+  static const String totalTaskDuration = "Total Task Duration";
+  static const String remainDuration = "Remain Duration";
+  static const String description = "Description";
+  
 }

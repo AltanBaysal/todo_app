@@ -3,9 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/constants/text_constants.dart';
 import 'package:todo_app/controllers/create_or_edit_task_state.dart';
 import 'package:todo_app/enums/importance_level_enum.dart';
-import 'package:todo_app/screens/helper/get_importance_level_text.dart';
+import 'package:todo_app/screens/helper/get_importance_level_text_extension.dart';
 
 class CreateEditTasksPage extends StatelessWidget {
+  //*
   const CreateEditTasksPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -59,8 +60,8 @@ class CreateEditTasksPage extends StatelessWidget {
 
   DropdownMenuItem<String> buildMenuItem(ImportanceLevel importanceLevel) {
     return DropdownMenuItem(
-      value: getImportanceLevelTexts(importanceLevel),
-      child: Text(getImportanceLevelTexts(importanceLevel)),
+      value: importanceLevel.getImportanceLevelTexts(),
+      child: Text(importanceLevel.getImportanceLevelTexts()),
       //? burda MediaQuery.of(context) kullanamıyorum
     );
   }
