@@ -95,7 +95,7 @@ class _MainPageTaskListTileTitle extends StatelessWidget {
             Consumer<TodoState>(
               builder: (_, value, __) => SvgWithSizedBox(
                 height: height * 0.05,
-                width: width * 0.05,
+                width: height * 0.05,
                 svgAssets: value.getGoalImportanceLevelSvgs(value.goals[index]),
               ),
             ),
