@@ -50,7 +50,7 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "${EnglishTexts.totalTaskDuration} : ${value.goals[index].taskTotalDuration.convertDurationToText()}",
+            "${EnglishTexts.totalTaskDuration} : ${value.goals[index].taskTotalDuration.convertDurationToText}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -58,7 +58,7 @@ class MainPageTaskListTile extends StatelessWidget {
 
         Consumer<TodoState>(
           builder: (_, value, __) => Text(
-            "${EnglishTexts.remainDuration} : ${value.goals[index].remainDuration.convertDurationToText()}",
+            "${EnglishTexts.remainDuration} : ${value.goals[index].remainDuration.convertDurationToText}",
             softWrap: true,
             style: TextStyle(fontSize: width * 0.04),
           ),
@@ -117,7 +117,7 @@ class _MainPageTaskListTileTitle extends StatelessWidget {
           margin: EdgeInsets.only(left: width * 0.02),
           child: Consumer<TodoState>(
             builder: (_, value, __) => Text(
-              (value.goals[index].remainDuration.convertDurationToText()),
+              (value.goals[index].remainDuration.convertDurationToText),
             ),
           ),
         ),
