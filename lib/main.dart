@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/core/init/controller_list.dart';
 import 'package:todo_app/screens/main_page/main_page.dart';
-import 'controllers/controllers_list.dart';
 
 void main() {
   runApp(
@@ -24,3 +24,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//provider of u araştır
+//!eğer veride bir güncelleme olmayacaksa, widgetın tekrar çizilmesine gerek yoksa consumer kullanma!

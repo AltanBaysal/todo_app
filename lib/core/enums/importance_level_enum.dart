@@ -1,0 +1,1 @@
+enum ImportanceLevel{extreme,very,pretty,normal,less}

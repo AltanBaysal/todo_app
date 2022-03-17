@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// bu kısım tam bitmedi
 class DatePickerWidgetState extends StatelessWidget {
@@ -28,7 +29,7 @@ class DatePickerWidgetState extends StatelessWidget {
     );
 
     if(newDate == null) return;
-
+    Provider.of<T>(context)
     //? burada nasıl provider kullanabilir
     
   }

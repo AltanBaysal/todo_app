@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
-//? bunu böyle kullanmak mantıklı mı ?  araya consumer koyma şansımı kaybediyorum
-class SvgWithSizedBox extends StatelessWidget {
-  const SvgWithSizedBox({ 
+class SvgCoveredSizedBox extends StatelessWidget {
+  const SvgCoveredSizedBox({ 
     Key? key,
     required this.height,
     required this.width,

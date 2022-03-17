@@ -1,8 +1,9 @@
-import 'package:todo_app/constants/assets_constants.dart';
-import 'package:todo_app/enums/importance_level_enum.dart';
+import 'package:todo_app/core/constants/assets_constants.dart';
+import 'package:todo_app/core/enums/importance_level_enum.dart';
 
-extension GetImportanceLevelSvgs on ImportanceLevel {
-  String getImportanceLevelSvgs() {
+//! importancelevel extensionları aynı extension altına yaz diğerlerinide
+extension GetImportanceLevelSvg on ImportanceLevel {
+  String get getImportanceLevelSvg{
     switch (this) {
       case ImportanceLevel.extreme:
         return Svgs.extremeImportanceLevelSvgs;

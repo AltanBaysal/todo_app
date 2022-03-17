@@ -1,3 +1,3 @@
 extension DurationExtensions on Duration{
-  int get inWeeks => (inDays)~/7;
+  int get inWeeks => (inDays/7).floor();
 } 

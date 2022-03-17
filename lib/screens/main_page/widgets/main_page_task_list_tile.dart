@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/constants/text_constants.dart';
 import 'package:todo_app/controllers/todo_state.dart';
+import 'package:todo_app/core/constants/text_constants.dart';
+import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/screens/helper/duration_text_converter_extension.dart';
-import 'package:todo_app/ui/svg_with_sized_box.dart';
 
 class MainPageTaskListTile extends StatelessWidget {
   const MainPageTaskListTile({
@@ -93,17 +93,18 @@ class _MainPageTaskListTileTitle extends StatelessWidget {
         Row(
           children: [
             Consumer<TodoState>(
-              builder: (_, value, __) => SvgWithSizedBox(
+              builder: (_, value, __) => SvgCoveredSizedBox(
                 height: height * 0.05,
                 width: height * 0.05,
-                svgAssets: value.getGoalImportanceLevelSvgs(value.goals[index]),
+                svgAssets: value.getGoalImportanceLevelSvg(value.goals[index]),
               ),
             ),
 
             Container(
               margin: EdgeInsets.only(left: width * 0.03),
               child: Consumer<TodoState>(
-                builder: (_, value, __) => Text(
+                //! bütün builderları aşağıdaki şekilde oluştur 
+                builder: (BuildContext context,TodoState value, Widget? child) => Text(
                   value.goals[index].title,
                   style: TextStyle(fontSize: width * 0.045),
                 ),

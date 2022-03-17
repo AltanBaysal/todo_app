@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/constants/text_constants.dart';
-import 'package:todo_app/controllers/create_or_edit_task_state.dart';
-import 'package:todo_app/enums/importance_level_enum.dart';
+import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
+import 'package:todo_app/core/constants/text_constants.dart';
+import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/screens/helper/get_importance_level_text_extension.dart';
 
 class CreateEditTasksPage extends StatelessWidget {
@@ -27,12 +27,11 @@ class CreateEditTasksPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(
                 vertical: height * 0.01, horizontal: width * 0.05),
-            child: Consumer<CreateOrEditTaskState>(
+            child: Consumer<CreateAndEditTaskController>(
               builder: (_, value, __) => DropdownButton<String>(
                 value: value.importanceLevelDropdownMenuValue,
                 items: ImportanceLevel.values.map(buildMenuItem).toList(),
-                onChanged: (changedvalue) =>
-                    value.setimportanceLevelDropdownMenuValue(changedvalue),
+                onChanged: value.setimportanceLevelDropdownMenuValue//*,
               ),
             ),
           ),

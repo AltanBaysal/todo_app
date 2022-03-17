@@ -1,11 +1,9 @@
-import 'package:todo_app/constants/text_constants.dart';
-import 'package:todo_app/services/duration_in_week.dart';
+import 'package:todo_app/core/constants/text_constants.dart';
+import 'package:todo_app/screens/helper/duration_in_week.dart';
 
-//? extension isimlendirmeleri nasıl olmalı
 extension ConvertDurationToText on Duration {
-
-  //? bu fonksiyuonu () olmadan yazabilir miyim ?
-  String convertDurationToText(){
+  //*extension get
+  String get convertDurationToText{
     if (isNegative) {
       return "Time Over";
     }

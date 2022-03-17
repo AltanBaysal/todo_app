@@ -1,19 +1,19 @@
-import 'package:todo_app/constants/text_constants.dart';
-import 'package:todo_app/enums/importance_level_enum.dart';
+import 'package:todo_app/core/constants/text_constants.dart';
+import 'package:todo_app/core/enums/importance_level_enum.dart';
 
 extension GetImportanceLevelTexts on ImportanceLevel {
-  String getImportanceLevelTexts() {
+  String get getImportanceLevelTexts{
     switch (this) {
       case ImportanceLevel.extreme:
-        return EnglishTexts.importanceLevelextreme;
+        return EnglishTexts.importanceLevelExtreme;
       case ImportanceLevel.very:
-        return EnglishTexts.importanceLevelvery;
+        return EnglishTexts.importanceLevelVery;
       case ImportanceLevel.pretty:
-        return EnglishTexts.importanceLevelpretty;
+        return EnglishTexts.importanceLevelPretty;
       case ImportanceLevel.normal:
-        return EnglishTexts.importanceLevelnormal;
+        return EnglishTexts.importanceLevelNormal;
       case ImportanceLevel.less:
-        return EnglishTexts.importanceLevelless;
+        return EnglishTexts.importanceLevelLess;
     }
   }
 }
