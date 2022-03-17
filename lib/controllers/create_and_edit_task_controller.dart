@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/enums/importance_level_enum.dart';
 
 class CreateAndEditTaskController with ChangeNotifier {
-  String? _importanceLevelDropdownMenuValue;// kullanıcının seçtiği item(aytım) enum nesnesi olarak tutulmalı kullanıcıya gösterilirken de bu enum nesnesi üstünden işlem beraber kullanıcıya gösterilicerk şey getirilir 
-
-  String? get importanceLevelDropdownMenuValue => _importanceLevelDropdownMenuValue;
-
-  void setimportanceLevelDropdownMenuValue(String? value){
-    _importanceLevelDropdownMenuValue = value;
+  void setselectedImportanceDropdownMenuValue(ImportanceLevel? value){
+    selectedImportanceDropdownMenuValue = value;
   }
+  ImportanceLevel? selectedImportanceDropdownMenuValue = ImportanceLevel.extreme; 
+  //? ImportanceLevel i nullable yapmadan yazabilir miyim burayı ?
+
+  
 }

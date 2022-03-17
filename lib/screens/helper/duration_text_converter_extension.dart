@@ -2,7 +2,6 @@ import 'package:todo_app/core/constants/text_constants.dart';
 
 extension DurationExtensions on Duration {
   String get convertDurationToText{
-    //! bunu switch case yap
     if (isNegative) {
       return "Time Over";
     }
