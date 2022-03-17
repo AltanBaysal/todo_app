@@ -1,9 +1,8 @@
 import 'package:todo_app/core/constants/text_constants.dart';
-import 'package:todo_app/screens/helper/duration_in_week.dart';
 
-extension ConvertDurationToText on Duration {
-  //*extension get
+extension DurationExtensions on Duration {
   String get convertDurationToText{
+    //! bunu switch case yap
     if (isNegative) {
       return "Time Over";
     }
@@ -26,4 +25,6 @@ extension ConvertDurationToText on Duration {
 
     return "$inSeconds ${EnglishTexts.abbreviationOfSeconds}";
   }
+
+  int get inWeeks => (inDays/7).floor();
 }

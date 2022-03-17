@@ -1,6 +1,6 @@
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 
-class Goal {
+class Task {
   String title;
   String description;
   ImportanceLevel importanceLevel;
@@ -9,7 +9,7 @@ class Goal {
   final String id = DateTime.now().toString();
   bool isCompleted = false;
 
-  Goal({
+  Task({
     required this.title,
     required this.description,
     required this.importanceLevel,
@@ -19,10 +19,3 @@ class Goal {
   Duration get taskTotalDuration => executionDate.difference(creationDate);
   Duration get remainDuration => executionDate.difference(DateTime.now());
 }
-
-
-/*
-  set title(String newString){
-    _title = newString;
-  }
-*/
