@@ -24,7 +24,7 @@ class CreateAndEditTaskPageDropdownMenu extends StatelessWidget {
           Widget? child,
         ) {
           return DropdownButton<ImportanceLevel>(
-            value: value.selectedImportance,
+            value: value.selectedImportanceLevel,
             onChanged:
                 value.setselectedImportance, //mütiş kullanım,
             //! map fonksiyonunu öğren

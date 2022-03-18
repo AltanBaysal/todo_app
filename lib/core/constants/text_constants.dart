@@ -23,5 +23,7 @@ class EnglishTexts{
   static const String totalTaskDuration = "Total Task Duration";
   static const String remainDuration = "Remain Duration";
   static const String description = "Description";
+
+  static const String thisFieldCannotBeLeftBlank = "This field cannot be left blank";
   
 }

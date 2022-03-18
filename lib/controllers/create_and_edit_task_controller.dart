@@ -1,37 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/todo_state.dart';
+import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
+import 'package:todo_app/models/goal.dart';
+import 'package:todo_app/models/text_field.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
+//? sanki biraz fazla kalabalık oldu ?
 class CreateAndEditTaskController with ChangeNotifier {
-  ImportanceLevel selectedImportance = ImportanceLevel.extreme;
-  DateTime selectedDateTime = DateTime.now().add(const Duration(days: 1));
+  ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
+
+  DateTime selectedDeadLine = DateTime.now().add(const Duration(days: 1));
+
+  TextFieldModel _titleTextField = TextFieldModel(
+    text: "",
+    hintText: EnglishTexts.enterTitle,
+    erorText: null,
+  );
+  
+  final TextFieldModel _descriptionTextField = TextFieldModel(
+    text: "",
+    hintText: EnglishTexts.enterDescription,
+    erorText: null,
+  );
 
 
-  String get selectedDateText =>"${selectedDateTime.year}/${selectedDateTime.month}/${selectedDateTime.day}";
+  //Getters
+  String get selectedDeadLineText =>
+      "${selectedDeadLine.year}/${selectedDeadLine.month}/${selectedDeadLine.day}";
+  String get selectedTimeText =>
+      "${selectedDeadLine.hourToText}:${selectedDeadLine.minuteToText}";
 
-  String get selectedTimeText =>"${selectedDateTime.hourToText}:${selectedDateTime.minuteToText}";
+  TextFieldModel get titleTextField => _titleTextField;
+  TextFieldModel get descriptionTextField => _descriptionTextField;
 
+
+  //Setters
   //? fonksiyonlar yeterince single responsibility'e uymuyor gibi ?
   void setselectedImportance(ImportanceLevel? newImportanceLevel) {
     if (newImportanceLevel == null) return;
-    selectedImportance = newImportanceLevel;
+    selectedImportanceLevel = newImportanceLevel;
     notifyListeners();
   }
 
   void setSelectedDate({required BuildContext context}) async {
     DateTime? newDate = await showDatePicker(
       context: context,
-      initialDate: selectedDateTime,
+      initialDate: selectedDeadLine,
       firstDate: DateTime.now(),
-      lastDate: DateTime(selectedDateTime.year + 100),
+      lastDate: DateTime(selectedDeadLine.year + 100),
     );
     if (newDate == null) return;
-    selectedDateTime = DateTime(
+    selectedDeadLine = DateTime(
       newDate.year,
       newDate.month,
       newDate.day,
-      selectedDateTime.hour,
-      selectedDateTime.minute,
+      selectedDeadLine.hour,
+      selectedDeadLine.minute,
     );
     notifyListeners();
   }
@@ -42,14 +68,53 @@ class CreateAndEditTaskController with ChangeNotifier {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if(newTimeOfDay == null) return;
-    selectedDateTime = DateTime(
-      selectedDateTime.year,
-      selectedDateTime.month,
-      selectedDateTime.day,
+    if (newTimeOfDay == null) return;
+    selectedDeadLine = DateTime(
+      selectedDeadLine.year,
+      selectedDeadLine.month,
+      selectedDeadLine.day,
       newTimeOfDay.hour,
       newTimeOfDay.minute,
     );
     notifyListeners();
+  }
+
+  //? videoda adam titledaki gibi yazdı ama bence descriptiondaki daha mantıklı ? video -> https://www.youtube.com/watch?v=Hr_-EqUR0lA&t=19s&ab_channel=AndyJulow
+  void setTitleTextField(String value) {
+    if (value.isEmpty) {
+      _titleTextField = TextFieldModel(
+        hintText: _titleTextField.hintText,
+        erorText: EnglishTexts.thisFieldCannotBeLeftBlank,
+        text: value,
+      );
+    } else {
+      _titleTextField = TextFieldModel(
+        hintText: _titleTextField.hintText,
+        erorText: null,
+        text: value,
+      );
+    }
+    notifyListeners();
+  }
+
+  void setDescriptionTextField(String value) {
+    _descriptionTextField.text = value;
+    notifyListeners();
+  }
+
+
+  //? baya kötü bir kullanım oldu
+  void createNewTask(BuildContext context) {
+    if (_titleTextField.erorText != null) return;
+
+    Task newTask = Task(
+      title: titleTextField.text,
+      description: descriptionTextField.text,
+      importanceLevel: selectedImportanceLevel,
+      deadLine: selectedDeadLine,
+    );
+
+    Provider.of<TodoState>(context,listen: false).addNewTaskToList(newTask: newTask);//? bu ve altındaki baya kötü bir kullanım gibi oldu
+    Navigator.pop(context);
   }
 }

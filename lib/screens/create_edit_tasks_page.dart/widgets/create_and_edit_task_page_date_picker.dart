@@ -18,7 +18,7 @@ class CreateAndEditTaskPageDatePicker extends StatelessWidget {
           value,
           Widget? child,
         ) {
-          return Text(value.selectedDateText);
+          return Text(value.selectedDeadLineText);
         },
       ),
     );
