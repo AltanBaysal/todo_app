@@ -7,7 +7,7 @@ import 'package:todo_app/models/goal.dart';
 import 'package:todo_app/models/text_field.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
-//? sanki biraz fazla kalabalık oldu ?
+//? sanki biraz fazla kalabalık oldu
 class CreateAndEditTaskController with ChangeNotifier {
   ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
 
@@ -18,13 +18,12 @@ class CreateAndEditTaskController with ChangeNotifier {
     hintText: EnglishTexts.enterTitle,
     erorText: null,
   );
-  
+
   final TextFieldModel _descriptionTextField = TextFieldModel(
     text: "",
     hintText: EnglishTexts.enterDescription,
     erorText: null,
   );
-
 
   //Getters
   String get selectedDeadLineText =>
@@ -34,7 +33,6 @@ class CreateAndEditTaskController with ChangeNotifier {
 
   TextFieldModel get titleTextField => _titleTextField;
   TextFieldModel get descriptionTextField => _descriptionTextField;
-
 
   //Setters
   //? fonksiyonlar yeterince single responsibility'e uymuyor gibi ?
@@ -103,9 +101,24 @@ class CreateAndEditTaskController with ChangeNotifier {
   }
 
 
+  //? isimlendirme doğru mu ?
+  bool isTitleUsable(){
+    if(_titleTextField.text.isEmpty){
+      setTitleTextField("");
+    }
+    if(_titleTextField.erorText != null) return false;
+    return true;
+  } 
+  
+  bool isDeadLineUsable(){
+    return selectedDeadLine.isInPasT;
+    //!toast message eklenecek
+  }
   //? baya kötü bir kullanım oldu
+
   void createNewTask(BuildContext context) {
-    if (_titleTextField.erorText != null) return;
+    if(!isTitleUsable()) return;
+    if(!isDeadLineUsable()) return;
 
     Task newTask = Task(
       title: titleTextField.text,
@@ -114,7 +127,17 @@ class CreateAndEditTaskController with ChangeNotifier {
       deadLine: selectedDeadLine,
     );
 
-    Provider.of<TodoState>(context,listen: false).addNewTaskToList(newTask: newTask);//? bu ve altındaki baya kötü bir kullanım gibi oldu
+    returnDefaultSettings();
+
+    Provider.of<TodoState>(context, listen: false).addNewTaskToList(
+        newTask: newTask); //? bu ve altındaki baya kötü bir kullanım gibi oldu
     Navigator.pop(context);
+  }
+
+  void returnDefaultSettings() {
+    selectedImportanceLevel = ImportanceLevel.extreme;
+    selectedDeadLine = DateTime.now().add(const Duration(days: 1));
+    _titleTextField.text = "";
+    _descriptionTextField.text = "";
   }
 }
