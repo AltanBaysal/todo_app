@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/models/goal.dart';
-import 'package:todo_app/screens/helper/duration_text_converter_extension.dart';
+import 'package:todo_app/screens/helper/duration_extensions.dart';
 import 'package:todo_app/screens/helper/importance_level_enum_extensions.dart';
 
 class MainPageTaskListTileChild extends StatelessWidget {

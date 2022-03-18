@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/create_edit_task_page.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/create_and_edit_task_page.dart';
 
 class MainPageFloatingActionButton extends StatelessWidget {
   const MainPageFloatingActionButton({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class MainPageFloatingActionButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const CreateEditTasksPage(),
+            builder: (context) => const CreateAndEditTasksPage(),
           ),
         );
       },

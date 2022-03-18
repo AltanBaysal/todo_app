@@ -5,8 +5,8 @@ import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/screens/helper/importance_level_enum_extensions.dart';
 
-class CreateEditPageDropdownMenu extends StatelessWidget {
-  const CreateEditPageDropdownMenu({Key? key}) : super(key: key);
+class CreateAndEditTaskPageDropdownMenu extends StatelessWidget {
+  const CreateAndEditTaskPageDropdownMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
