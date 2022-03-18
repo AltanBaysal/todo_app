@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
-import 'package:todo_app/screens/helper/importance_level_enum_extensions.dart';
 import '../models/goal.dart';
 
 class TodoState with ChangeNotifier {
@@ -45,7 +44,4 @@ class TodoState with ChangeNotifier {
 
   List<Task> get goals => _goals;
   //! otomatik sıralama yapılacak
-  String getTaskImportanceLevelSvg(Task goal) {
-    return goal.importanceLevel.getImportanceLevelSvg;
-  }
 }

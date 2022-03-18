@@ -24,9 +24,9 @@ class CreateEditPageDropdownMenu extends StatelessWidget {
           Widget? child,
         ) {
           return DropdownButton<ImportanceLevel>(
-            value: value.selectedImportanceDropdownMenuValue,
+            value: value.selectedImportance,
             onChanged:
-                value.setselectedImportanceDropdownMenuValue, //mütiş kullanım,
+                value.setselectedImportance, //mütiş kullanım,
             //! map fonksiyonunu öğren
             items: ImportanceLevel.values
                 .map(
@@ -40,9 +40,11 @@ class CreateEditPageDropdownMenu extends StatelessWidget {
                           width: width * 0.08,
                           svgAssets: item.getImportanceLevelSvg,  
                         ),
+                        
                         SizedBox(
                           width: width * 0.03,
                         ),
+                        
                         Text(
                           item.getImportanceLevelText,
                           style: TextStyle(
