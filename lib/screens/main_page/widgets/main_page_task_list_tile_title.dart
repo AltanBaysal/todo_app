@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/duration_extensions.dart';
@@ -20,12 +21,23 @@ class MainPageTaskListTileTitle extends StatelessWidget {
       children: [
         Row(
           children: [
+            //!
+            Consumer(
+              builder: (BuildContext context, value,Widget? child) => Visibility(
+                visible: true,
+                child: Checkbox(
+                  value: true,
+                  onChanged: (value) {},
+                ),
+              ),
+            ),
+
             SvgCoveredSizedBox(
               height: height * 0.05,
               width: height * 0.05,
               svgAssets: task.importanceLevel.getImportanceLevelSvg,
             ),
-            
+
             Container(
               margin: EdgeInsets.only(left: width * 0.03),
               child: Text(
@@ -35,7 +47,6 @@ class MainPageTaskListTileTitle extends StatelessWidget {
             ),
           ],
         ),
-        
         Container(
           margin: EdgeInsets.only(left: width * 0.02),
           child: Text(
