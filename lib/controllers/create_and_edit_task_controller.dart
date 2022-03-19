@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
-import 'package:todo_app/models/goal.dart';
+import 'package:todo_app/models/task.dart';
 import 'package:todo_app/models/text_field.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
@@ -111,7 +111,7 @@ class CreateAndEditTaskController with ChangeNotifier {
   } 
   
   bool isDeadLineUsable(){
-    return selectedDeadLine.isInPasT;
+    return !selectedDeadLine.isInPast;
     //!toast message eklenecek
   }
   //? baya kötü bir kullanım oldu

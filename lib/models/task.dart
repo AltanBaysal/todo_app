@@ -1,4 +1,5 @@
 import 'package:todo_app/core/enums/importance_level_enum.dart';
+import 'package:uuid/uuid.dart';
 
 class Task {
   String title;
@@ -6,7 +7,7 @@ class Task {
   ImportanceLevel importanceLevel;
   DateTime deadLine;
   final DateTime creationDate = DateTime.now();
-  final String id = DateTime.now().toString();
+  final String id = const Uuid().v1();
   bool isCompleted = false;
 
   Task({

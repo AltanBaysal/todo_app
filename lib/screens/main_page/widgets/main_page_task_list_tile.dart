@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/models/goal.dart';
+import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/main_page/widgets/main_page_task_list_tile_child.dart';
 import 'package:todo_app/screens/main_page/widgets/main_page_task_list_tile_title.dart';
 
