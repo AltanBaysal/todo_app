@@ -7,9 +7,16 @@ class CreateAndEditTaskPageTimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        Provider.of<CreateAndEditTaskController>(context, listen: false)
-            .setSelectedTime(context: context);
+      onPressed: () async {
+        Provider.of<CreateAndEditTaskController>(
+          context,
+          listen: false,
+        ).setSelectedTime(
+          newTimeOfDay: await showTimePicker(
+            context: context,
+            initialTime: TimeOfDay.now(),
+          ),
+        );
       },
       child: Consumer<CreateAndEditTaskController>(
         builder: (

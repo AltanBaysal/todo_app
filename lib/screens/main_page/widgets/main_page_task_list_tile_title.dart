@@ -27,7 +27,9 @@ class MainPageTaskListTileTitle extends StatelessWidget {
                 visible: true,
                 child: Checkbox(
                   value: true,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    
+                  },
                 ),
               ),
             ),

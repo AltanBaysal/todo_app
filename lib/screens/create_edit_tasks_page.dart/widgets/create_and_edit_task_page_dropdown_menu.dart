@@ -28,10 +28,11 @@ class CreateAndEditTaskPageDropdownMenu extends StatelessWidget {
             onChanged:
                 value.setselectedImportance, //mütiş kullanım,
             //! map fonksiyonunu öğren
+            //! items ı create eden fonksiyonu ayır
             items: ImportanceLevel.values
                 .map(
-                  (item) => DropdownMenuItem<ImportanceLevel>(
-                    //? burayı ayrı bir widget olarak yazmamı ister misin ?
+                  (ImportanceLevel item) => DropdownMenuItem<ImportanceLevel>(
+                    //! burayı ayrı bir widget olarak yaz
                     value: item,
                     child: Row(
                       children: [

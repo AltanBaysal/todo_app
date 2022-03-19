@@ -8,10 +8,20 @@ class CreateAndEditTaskPageDatePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        Provider.of<CreateAndEditTaskController>(context,listen: false)
-            .setSelectedDate(context: context);
-      }, //? burayı senin gösterdiğin şekilde yazamadım
+      onPressed: () async {
+        //!? datepickerları bu hale getirdim
+        Provider.of<CreateAndEditTaskController>(
+          context,
+          listen: false,
+        ).setSelectedDate(
+          newDate: await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime.now(),
+            lastDate: DateTime(DateTime.now().year + 100),
+          ),
+        );
+      },
       child: Consumer<CreateAndEditTaskController>(
         builder: (
           BuildContext context,

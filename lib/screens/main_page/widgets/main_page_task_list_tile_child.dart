@@ -18,39 +18,34 @@ class MainPageTaskListTileChild extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //! tasarımını baştan yap
+        //! SOFTWRAP VE bir textin maximum satrı uzunluğunun nasıl  araştır
         Text(
           "${EnglishTexts.importanceLevel} : ${task.importanceLevel.getImportanceLevelText}",
-          softWrap: true,
           style: TextStyle(fontSize: width * 0.04),
         ),
 
         Text(
           "${EnglishTexts.creationDate} : ${task.creationDate.toString().substring(0, 16)}",
-          softWrap: true,
           style: TextStyle(fontSize: width * 0.04),
         ),
 
         Text(
           "${EnglishTexts.deadline} : ${task.deadLine.toString().substring(0, 16)}",
-          softWrap: true,
           style: TextStyle(fontSize: width * 0.04),
         ),
 
         Text(
           "${EnglishTexts.totalTaskDuration} : ${task.taskTotalDuration.convertDurationToText}",
-          softWrap: true,
           style: TextStyle(fontSize: width * 0.04),
         ),
 
         Text(
           "${EnglishTexts.remainDuration} : ${task.remainDuration.convertDurationToText}",
-          softWrap: true,
           style: TextStyle(fontSize: width * 0.04),
         ),
-        
+
         Text(
           "${EnglishTexts.description} : ${task.description}",
-          softWrap: true,
           style: TextStyle(fontSize: width * 0.04),
         ),
       ],

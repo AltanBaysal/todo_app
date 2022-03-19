@@ -7,10 +7,11 @@ import 'package:todo_app/screens/helper/task_list_extensions.dart';
 class TodoState with ChangeNotifier {
   final List<Task> _tasks = [];
   List<MainPageTaskView> _mainPageTaskView = [];
+  //! iserasermod bool değil enum;
   bool isEraseModOn = false;
 
   List<Task> get tasks => _tasks;
-  List<Task> get tasksInTimeOrder => _tasks.putTasksInTimeOrder;
+  List<Task> get tasksInTimeOrder => _tasks.getTaskListByTimeOrder;
   List<MainPageTaskView> get mainPageTaskView => _mainPageTaskView;
 
   //? adlandırmalar
@@ -22,11 +23,13 @@ class TodoState with ChangeNotifier {
   //? bunları servicese koymamı ister misin ?
   void removeTask({required Task task}) {
     _tasks.remove(task);
+    notifyListeners();
   }
 
   void removeTaskById({required String id}) {
     removeTask(
       task: _tasks.findTaskById(id:id),
+  
     );
   }
 

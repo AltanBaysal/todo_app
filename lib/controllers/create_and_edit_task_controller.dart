@@ -7,8 +7,8 @@ import 'package:todo_app/models/task.dart';
 import 'package:todo_app/models/text_field.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
-//? sanki biraz fazla kalabalık oldu
 class CreateAndEditTaskController with ChangeNotifier {
+  //! ui daki text editing controllerlar providerda tanımlanacak
   ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
 
   DateTime selectedDeadLine = DateTime.now().add(const Duration(days: 1));
@@ -35,20 +35,15 @@ class CreateAndEditTaskController with ChangeNotifier {
   TextFieldModel get descriptionTextField => _descriptionTextField;
 
   //Setters
-  //? fonksiyonlar yeterince single responsibility'e uymuyor gibi ?
   void setselectedImportance(ImportanceLevel? newImportanceLevel) {
     if (newImportanceLevel == null) return;
     selectedImportanceLevel = newImportanceLevel;
     notifyListeners();
   }
 
-  void setSelectedDate({required BuildContext context}) async {
-    DateTime? newDate = await showDatePicker(
-      context: context,
-      initialDate: selectedDeadLine,
-      firstDate: DateTime.now(),
-      lastDate: DateTime(selectedDeadLine.year + 100),
-    );
+  
+  void setSelectedDate({required DateTime? newDate}) async {    
+    //? böyle daha iyi mi?
     if (newDate == null) return;
     selectedDeadLine = DateTime(
       newDate.year,
@@ -59,13 +54,8 @@ class CreateAndEditTaskController with ChangeNotifier {
     );
     notifyListeners();
   }
-
-  void setSelectedTime({required BuildContext context}) async {
-    //? başka time picker kullanma şansım var mı?
-    TimeOfDay? newTimeOfDay = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
+  
+  void setSelectedTime({required TimeOfDay? newTimeOfDay}) {
     if (newTimeOfDay == null) return;
     selectedDeadLine = DateTime(
       selectedDeadLine.year,
@@ -77,7 +67,8 @@ class CreateAndEditTaskController with ChangeNotifier {
     notifyListeners();
   }
 
-  //? videoda adam titledaki gibi yazdı ama bence descriptiondaki daha mantıklı ? video -> https://www.youtube.com/watch?v=Hr_-EqUR0lA&t=19s&ab_channel=AndyJulow
+
+  //! Textfiel dmodel gereksiz görüldü kaldırılacak textformfield validator fonksiyonuyla yap contollera yazılıacak
   void setTitleTextField(String value) {
     if (value.isEmpty) {
       _titleTextField = TextFieldModel(
@@ -94,7 +85,8 @@ class CreateAndEditTaskController with ChangeNotifier {
     }
     notifyListeners();
   }
-
+  
+  //! bu kaldırılıcak
   void setDescriptionTextField(String value) {
     _descriptionTextField.text = value;
     notifyListeners();
@@ -102,6 +94,7 @@ class CreateAndEditTaskController with ChangeNotifier {
 
 
   //? isimlendirme doğru mu ?
+  //!validator olarak tekrar yaz
   bool isTitleUsable(){
     if(_titleTextField.text.isEmpty){
       setTitleTextField("");
@@ -132,11 +125,13 @@ class CreateAndEditTaskController with ChangeNotifier {
     Provider.of<TodoState>(context, listen: false).addNewTaskToList(
         newTask: newTask); //? bu ve altındaki baya kötü bir kullanım gibi oldu
     Navigator.pop(context);
+    //! ui a yaz  navigator fonksiyonu ui içinde olur!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 
   void returnDefaultSettings() {
     selectedImportanceLevel = ImportanceLevel.extreme;
-    selectedDeadLine = DateTime.now().add(const Duration(days: 1));
+    selectedDeadLine = DateTime.now();
+    //! provider taşınan kontrollerlardan yapılacak
     _titleTextField.text = "";
     _descriptionTextField.text = "";
   }
