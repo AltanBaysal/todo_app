@@ -17,9 +17,9 @@ class MainPageBody extends StatelessWidget {
           Widget? child,
         ) {
           return ListView.builder(
-            itemCount: value.tasksInTimeOrder.length,
+            itemCount: value.taskListInOrder.length,
             itemBuilder: (context, index) {
-              return MainPageTaskListTile(task: value.tasksInTimeOrder[index]);
+              return MainPageTaskListTile(task: value.taskListInOrder[index]);
             },
           );
         },

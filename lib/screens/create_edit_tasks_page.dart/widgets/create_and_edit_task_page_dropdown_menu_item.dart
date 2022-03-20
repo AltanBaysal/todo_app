@@ -19,13 +19,13 @@ class CreateAndEditPageDropdownMenuItem extends StatelessWidget {
         SvgCoveredSizedBox(
           height: width * 0.08,
           width: width * 0.08,
-          svgAssets: importanceLevel.getImportanceLevelSvg,
+          svgAssets: importanceLevel.importanceLevelSvg,
         ),
         SizedBox(
           width: width * 0.03,
         ),
         Text(
-          importanceLevel.getImportanceLevelText,
+          importanceLevel.importanceLevelText,
           style: TextStyle(
             fontSize: width * 0.04,
           ),

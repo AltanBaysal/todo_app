@@ -1,20 +1,22 @@
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/screens/helper/get_importance_level_values_in_importance_order.dart';
 
-extension TaskListExtensions on List<Task> {
- 
-  //! sil
-  Task findTaskById({required String id}){
-    return firstWhere((element) => element.id == id);
-  }
-   
-  
+extension TaskListExtensions on List<Task> {  
   List<Task> getTaskListByImportanceLevel({required ImportanceLevel importanceLevel}) {
     List<Task> newList = [];
     for (var element in this) {
       if(element.importanceLevel == importanceLevel){
         newList.add(element);
       }
+    }
+    return newList;
+  }
+
+  List<Task> get taskListInImportanceLevelAndTimeOrder{
+    List<Task> newList = [];
+    for (var item in getImportanceLevelValuesInImportanceOrder()) {
+      newList += getTaskListByImportanceLevel(importanceLevel: item).getTaskListByTimeOrder;
     }
     return newList;
   }

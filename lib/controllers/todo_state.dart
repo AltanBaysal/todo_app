@@ -1,54 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/models/main_page_task_view.dart';
+import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/models/task.dart';
-import 'package:todo_app/screens/helper/task_list_extensions.dart';
+import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
-//? erase kısmını batırdım gibi
+
 class TodoState with ChangeNotifier {
+  SortTaskBy sortTaskBy = SortTaskBy.importanceAndDeadline;
   final List<Task> _tasks = [];
-  List<MainPageTaskView> _mainPageTaskView = [];
   //! iserasermod bool değil enum;
   bool isEraseModOn = false;
-
   List<Task> get tasks => _tasks;
-  List<Task> get tasksInTimeOrder => _tasks.getTaskListByTimeOrder;
-  List<MainPageTaskView> get mainPageTaskView => _mainPageTaskView;
 
-  //? adlandırmalar
+  //? isimlendirmeler tam olmadı gibi enum'ın falan
+  List<Task> get taskListInOrder => sortTaskBy.sortTaskList(taskList: _tasks);
+
+ 
   void addNewTaskToList({required Task newTask}) {
     tasks.add(newTask);
     notifyListeners();
   }
-
   //? bunları servicese koymamı ister misin ?
   void removeTask({required Task task}) {
     _tasks.remove(task);
     notifyListeners();
-  }
-
-  void removeTaskById({required String id}) {
-    removeTask(
-      task: _tasks.findTaskById(id:id),
-  
-    );
-  }
-
-
-  void toggleEraseTaskMod() {
-    isEraseModOn = !isEraseModOn;
-    if (isEraseModOn) {
-      for (var element in tasks) {
-        _mainPageTaskView.add(MainPageTaskView(element.id));
-      }
-    }
-  }
-
-  void eraseSelectedTasks() {
-    for (var item in mainPageTaskView) {
-      if (item.isChecked) {
-        removeTaskById(id: item.taskId);
-      }
-    }
-    _mainPageTaskView = [];
   }
 }

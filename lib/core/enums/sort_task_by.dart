@@ -1,0 +1,4 @@
+enum SortTaskBy{
+  importanceAndDeadline,
+  deadline,
+}

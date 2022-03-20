@@ -3,7 +3,7 @@ import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 
 extension ImportanceLevelEnumExtensions on ImportanceLevel {
-  String get getImportanceLevelSvg {
+  String get importanceLevelSvg {
     switch (this) {
       case ImportanceLevel.extreme:
         return Svgs.extremeImportanceLevelSvgs;
@@ -18,7 +18,7 @@ extension ImportanceLevelEnumExtensions on ImportanceLevel {
     }
   }
 
-  String get getImportanceLevelText {
+  String get importanceLevelText {
     switch (this) {
       case ImportanceLevel.extreme:
         return EnglishTexts.importanceLevelExtreme;
@@ -33,7 +33,7 @@ extension ImportanceLevelEnumExtensions on ImportanceLevel {
     }
   }
 
-  List<String> get getAllImpotanceLevelText {
+  List<String> get allImpotanceLevelText {
     return [
       EnglishTexts.importanceLevelExtreme,
       EnglishTexts.importanceLevelVery,
@@ -42,4 +42,6 @@ extension ImportanceLevelEnumExtensions on ImportanceLevel {
       EnglishTexts.importanceLevelLess
     ];
   }
+
+  
 }

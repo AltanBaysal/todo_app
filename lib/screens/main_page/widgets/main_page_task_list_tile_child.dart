@@ -20,7 +20,7 @@ class MainPageTaskListTileChild extends StatelessWidget {
         //! tasarımını baştan yap
         //! SOFTWRAP VE bir textin maximum satrı uzunluğunun nasıl  araştır
         Text(
-          "${EnglishTexts.importanceLevel} : ${task.importanceLevel.getImportanceLevelText}",
+          "${EnglishTexts.importanceLevel} : ${task.importanceLevel.importanceLevelText}",
           style: TextStyle(fontSize: width * 0.04),
         ),
 

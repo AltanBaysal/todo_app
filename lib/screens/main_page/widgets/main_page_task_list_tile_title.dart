@@ -17,6 +17,7 @@ class MainPageTaskListTileTitle extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Row(
+      //! burayı parcala
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
@@ -37,7 +38,7 @@ class MainPageTaskListTileTitle extends StatelessWidget {
             SvgCoveredSizedBox(
               height: height * 0.05,
               width: height * 0.05,
-              svgAssets: task.importanceLevel.getImportanceLevelSvg,
+              svgAssets: task.importanceLevel.importanceLevelSvg,
             ),
 
             Container(
