@@ -4,35 +4,24 @@ import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/models/task.dart';
-import 'package:todo_app/models/text_field.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
 class CreateAndEditTaskController with ChangeNotifier {
-  //! ui daki text editing controllerlar providerda tanımlanacak
   ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
-
   DateTime selectedDeadLine = DateTime.now().add(const Duration(days: 1));
 
-  TextFieldModel _titleTextField = TextFieldModel(
-    text: "",
-    hintText: EnglishTexts.enterTitle,
-    erorText: null,
-  );
+  //? bunları sıfırlayabilmek için final yapmadım
+  TextEditingController titleFormFieldController = TextEditingController();
+  TextEditingController descriptionFormFieldController = TextEditingController();
+  GlobalKey<FormState> titleFormFieldKey = GlobalKey<FormState>();
 
-  final TextFieldModel _descriptionTextField = TextFieldModel(
-    text: "",
-    hintText: EnglishTexts.enterDescription,
-    erorText: null,
-  );
-
+  
   //Getters
   String get selectedDeadLineText =>
       "${selectedDeadLine.year}/${selectedDeadLine.month}/${selectedDeadLine.day}";
   String get selectedTimeText =>
       "${selectedDeadLine.hourToText}:${selectedDeadLine.minuteToText}";
 
-  TextFieldModel get titleTextField => _titleTextField;
-  TextFieldModel get descriptionTextField => _descriptionTextField;
 
   //Setters
   void setselectedImportance(ImportanceLevel? newImportanceLevel) {
@@ -40,10 +29,9 @@ class CreateAndEditTaskController with ChangeNotifier {
     selectedImportanceLevel = newImportanceLevel;
     notifyListeners();
   }
-
   
   void setSelectedDate({required DateTime? newDate}) async {    
-    //? böyle daha iyi mi?
+    //? bu hale getirdim
     if (newDate == null) return;
     selectedDeadLine = DateTime(
       newDate.year,
@@ -68,71 +56,58 @@ class CreateAndEditTaskController with ChangeNotifier {
   }
 
 
-  //! Textfiel dmodel gereksiz görüldü kaldırılacak textformfield validator fonksiyonuyla yap contollera yazılıacak
-  void setTitleTextField(String value) {
-    if (value.isEmpty) {
-      _titleTextField = TextFieldModel(
-        hintText: _titleTextField.hintText,
-        erorText: EnglishTexts.thisFieldCannotBeLeftBlank,
-        text: value,
-      );
-    } else {
-      _titleTextField = TextFieldModel(
-        hintText: _titleTextField.hintText,
-        erorText: null,
-        text: value,
-      );
+  String? titleValidator(String? value){
+    if(value != null && value.isNotEmpty){
+      return null;
     }
-    notifyListeners();
-  }
-  
-  //! bu kaldırılıcak
-  void setDescriptionTextField(String value) {
-    _descriptionTextField.text = value;
-    notifyListeners();
+    return EnglishTexts.thisFieldCannotBeLeftBlank;
   }
 
+  //! isvalidate tekrar düzenlenecek
+  bool isTitleValidate(){
+    //? extra key tanımlaöaya gerek varmı controllerla direk böyle çözebiliyorum
+    if(titleValidator(titleFormFieldController.text) == null) return true;
+    return false;
 
-  //? isimlendirme doğru mu ?
-  //!validator olarak tekrar yaz
-  bool isTitleUsable(){
-    if(_titleTextField.text.isEmpty){
-      setTitleTextField("");
+    //? //! current state neden sürekli null dönüyor araştır
+    /*
+    if(titleFormFieldKey.currentState == null){
+      return false;
     }
-    if(_titleTextField.erorText != null) return false;
-    return true;
-  } 
+    //? alttakini forcelamak zorunda kalmamak için üstekini yazdım ama yinede forcelamak zorunda kalıyorum :(
+    return titleFormFieldKey.currentState!.validate();
+    */
+  }
   
   bool isDeadLineUsable(){
     return !selectedDeadLine.isInPast;
     //!toast message eklenecek
   }
-  //? baya kötü bir kullanım oldu
 
-  void createNewTask(BuildContext context) {
-    if(!isTitleUsable()) return;
-    if(!isDeadLineUsable()) return;
+
+  //? bool eklemek zorunda kaldım pop için
+  bool createNewTask(BuildContext context) {
+    if(!isDeadLineUsable() || !isTitleValidate()) return false;
 
     Task newTask = Task(
-      title: titleTextField.text,
-      description: descriptionTextField.text,
+      title: titleFormFieldController.text,
+      description: descriptionFormFieldController.text,
       importanceLevel: selectedImportanceLevel,
       deadLine: selectedDeadLine,
     );
 
     returnDefaultSettings();
-
-    Provider.of<TodoState>(context, listen: false).addNewTaskToList(
-        newTask: newTask); //? bu ve altındaki baya kötü bir kullanım gibi oldu
-    Navigator.pop(context);
-    //! ui a yaz  navigator fonksiyonu ui içinde olur!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Provider.of<TodoState>(context, listen: false).addNewTaskToList(newTask: newTask); //?
+    return true;
   }
+  
 
+  //? aslında controller'ı sayfa oluşurken ayağa kaldırsam sayfa her oluştuğunda sıfırlanır gibi ? 
   void returnDefaultSettings() {
     selectedImportanceLevel = ImportanceLevel.extreme;
     selectedDeadLine = DateTime.now();
-    //! provider taşınan kontrollerlardan yapılacak
-    _titleTextField.text = "";
-    _descriptionTextField.text = "";
+    titleFormFieldController = TextEditingController();
+    descriptionFormFieldController = TextEditingController();
+    titleFormFieldKey = GlobalKey<FormState>();
   }
 }

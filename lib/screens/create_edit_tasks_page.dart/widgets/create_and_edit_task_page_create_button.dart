@@ -12,10 +12,12 @@ class CreateAndEditPageCreateButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: height * 0.04),
       child: ElevatedButton(
-        onPressed: () => Provider.of<CreateAndEditTaskController>(
-          context,
-          listen: false,
-        ).createNewTask(context),
+        onPressed: () {
+          if (Provider.of<CreateAndEditTaskController>(
+            context,
+            listen: false,
+          ).createNewTask(context)) Navigator.pop(context);
+        },
         child: const Text(EnglishTexts.create),
       ),
     );

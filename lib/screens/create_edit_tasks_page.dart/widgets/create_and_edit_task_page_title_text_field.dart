@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
+import 'package:todo_app/core/constants/text_constants.dart';
 
 class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
   const CreateAndEditTaskPageTitleTextField({Key? key}) : super(key: key);
@@ -14,14 +15,20 @@ class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
         vertical: height * 0.01,
         horizontal: width * 0.05,
       ),
-      child: Consumer<CreateAndEditTaskController>(
-        builder: (BuildContext context, value, Widget? child) => TextField(
-          decoration: InputDecoration(
-            hintText: value.titleTextField.hintText,
-            errorText: value.titleTextField.erorText,
-          ),
-          onChanged: value.setTitleTextField,
+      child: TextFormField(
+        decoration: const InputDecoration(
+          //? hintext controllerdan gelmeliymiş gibi hissediyorum
+          hintText: EnglishTexts.enterTitle,
         ),
+        autovalidateMode: AutovalidateMode.always,
+        controller:
+            Provider.of<CreateAndEditTaskController>(context, listen: false)
+                .titleFormFieldController,
+        validator:
+            Provider.of<CreateAndEditTaskController>(context, listen: false)
+                .titleValidator,
+        key: Provider.of<CreateAndEditTaskController>(context, listen: false)
+            .titleFormFieldKey,
       ),
     );
   }
