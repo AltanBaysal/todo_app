@@ -56,6 +56,7 @@ class CreateAndEditTaskController with ChangeNotifier {
   }
 
 
+  //? bu isim yeterince açıklayıcı değil gibi createAndEditTaskPageTitleFormFieldValidator yapmamı istermisin ismini
   String? titleValidator(String? value){
     if(value != null && value.isNotEmpty){
       return null;
