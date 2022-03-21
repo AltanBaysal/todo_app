@@ -6,7 +6,7 @@ extension DurationExtensions on Duration {
       return "Time Over";
     }
 
-    if (inWeeks > 6) {
+    if (inDays > 6) {
       return "$inWeeks ${EnglishTexts.abbreviationOfWeek}";
     }
 

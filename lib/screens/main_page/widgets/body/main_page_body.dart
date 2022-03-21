@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/todo_state.dart';
-import 'main_page_task_list_tile.dart';
+import 'package:todo_app/screens/main_page/widgets/body/widgets/main_page_task_list_tile.dart';
 
 class MainPageBody extends StatelessWidget {
   const MainPageBody({Key? key}) : super(key: key);

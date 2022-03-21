@@ -1,0 +1,4 @@
+enum MainPageMod{
+  normal,
+  select,
+}

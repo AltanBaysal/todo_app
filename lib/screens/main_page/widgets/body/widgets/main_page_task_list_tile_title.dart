@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/duration_extensions.dart';
@@ -16,21 +17,18 @@ class MainPageTaskListTileTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    //? bunu parçalamama gerek var mı ?
     return Row(
-      //! burayı parcala
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            //!
-            Consumer(
+            Consumer<TodoState>(
               builder: (BuildContext context, value,Widget? child) => Visibility(
-                visible: true,
+                visible: value.checkboxVisibilityToggle,
                 child: Checkbox(
-                  value: true,
-                  onChanged: (value) {
-                    
-                  },
+                  value: value.isCheckboxChecked(task),
+                  onChanged: (bool? isChecked) => value.selectedTaskListAddRemoveTaskToggle(task),
                 ),
               ),
             ),
@@ -50,6 +48,7 @@ class MainPageTaskListTileTitle extends StatelessWidget {
             ),
           ],
         ),
+
         Container(
           margin: EdgeInsets.only(left: width * 0.02),
           child: Text(

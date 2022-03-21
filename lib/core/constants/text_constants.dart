@@ -1,4 +1,5 @@
 class EnglishTexts{
+  static const String appName = "Todo App";
   static const String abbreviationOfWeek = "w";
   static const String abbreviationOfDay = "d";
   static const String abbreviationOfHour = "h";
