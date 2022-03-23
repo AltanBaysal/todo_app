@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
+import 'package:todo_app/core/enums/create_and_edit_task_page_mod.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
 class CreateAndEditTaskController with ChangeNotifier {
+  CreateAndEditPageMod createAndEditPageMod = CreateAndEditPageMod.create;
   ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
   DateTime selectedDeadLine = DateTime.now().add(const Duration(days: 1));
 
@@ -21,6 +23,8 @@ class CreateAndEditTaskController with ChangeNotifier {
       "${selectedDeadLine.year}/${selectedDeadLine.month}/${selectedDeadLine.day}";
   String get selectedTimeText =>
       "${selectedDeadLine.hourToText}:${selectedDeadLine.minuteToText}";
+
+  
 
 
   //Setters
@@ -109,6 +113,6 @@ class CreateAndEditTaskController with ChangeNotifier {
     selectedDeadLine = DateTime.now();
     titleFormFieldController = TextEditingController();
     descriptionFormFieldController = TextEditingController();
-    titleFormFieldKey = GlobalKey<FormState>();
+    titleFormFieldKey = GlobalKey<FormState>(); 
   }
 }
