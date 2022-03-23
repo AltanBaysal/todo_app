@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/core/enums/main_page_mod.dart';
 import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/models/task.dart';
@@ -38,7 +39,6 @@ class TodoState with ChangeNotifier {
     notifyListeners();
   }
 
-
   //? single responsiblity'e uymuyor gibi
   //? isimler çok kötü oldu ama daha iyisine bulamadım
   void deleteSelectedTasksButtonFunction() {
@@ -63,7 +63,18 @@ class TodoState with ChangeNotifier {
     notifyListeners();
   }
 
-
+  void editTask({
+    required Task task,
+    String? title,
+    String? description,
+    ImportanceLevel? importanceLevel,
+    DateTime? deadLine,
+  }) {
+    task.title = title ?? task.title;
+    task.description = description ?? task.description;
+    task.importanceLevel = importanceLevel ?? task.importanceLevel;
+    task.deadLine = deadLine ?? task.deadLine;
+  }
 
   //sub functions
   void deleteSelectedTasks() {
@@ -74,7 +85,7 @@ class TodoState with ChangeNotifier {
 
   void achieveSelectedTasks() {
     for (var item in _selectedTasks) {
-      item.isCompleted = true;
+      item.setIsCompletedTrue();
     }
   }
 }

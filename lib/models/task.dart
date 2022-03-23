@@ -7,8 +7,8 @@ class Task {
   ImportanceLevel importanceLevel;
   DateTime deadLine;
   final DateTime creationDate = DateTime.now();
-  final String id = const Uuid().v1();
-  bool isCompleted = false;
+  final String _id = const Uuid().v1();
+  bool _isCompleted = false;
 
   Task({
     required this.title,
@@ -19,4 +19,10 @@ class Task {
 
   Duration get taskTotalDuration => deadLine.difference(creationDate);
   Duration get remainDuration => deadLine.difference(DateTime.now());
+  String get id => _id;
+  bool get isCompleted => _isCompleted;
+
+  void setIsCompletedTrue(){
+    _isCompleted = true;
+  }
 }

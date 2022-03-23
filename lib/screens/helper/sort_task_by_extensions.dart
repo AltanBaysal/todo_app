@@ -5,8 +5,8 @@ import 'package:todo_app/screens/helper/task_list_extensions.dart';
 extension SortTaskByExtensions on SortTaskBy{
   List<Task> sortTaskList({required List<Task> taskList}){
     switch (this){
-      case SortTaskBy.importanceAndDeadline : return taskList.taskListInImportanceLevelAndTimeOrder;
-      case SortTaskBy.deadline : return taskList.getTaskListByTimeOrder;
+      case SortTaskBy.importanceAndDeadline : return taskList.inImportanceLevelAndTimeOrderEndWithAchievedTask;
+      case SortTaskBy.deadline : return taskList.inTimeOrderEndWithAchievedTask;
     }
   }
 }

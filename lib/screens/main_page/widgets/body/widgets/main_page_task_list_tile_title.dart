@@ -4,7 +4,6 @@ import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/duration_extensions.dart';
-import 'package:todo_app/screens/helper/importance_level_enum_extensions.dart';
 import 'package:todo_app/screens/helper/task_extension.dart';
 
 class MainPageTaskListTileTitle extends StatelessWidget {
