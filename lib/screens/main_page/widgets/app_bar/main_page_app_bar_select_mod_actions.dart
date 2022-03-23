@@ -10,14 +10,30 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconCoveredGestureDetector(icon: Icons.delete, onTap: () {}),
-        IconCoveredGestureDetector(icon: Icons.check, onTap: () {}),
         IconCoveredGestureDetector(
-          icon: Icons.close,
-          onTap: () => Provider.of<TodoState>(
+          icon: Icons.delete,
+          //? buradaki fonksiyonu direk eşitlemeyince patlıyor nedeni notfiy listener erken çalıştığı içinmiş ama tam anlamadım
+          //? sorunu çözdüm ama nasıl çözdüğümü bende anlamadım 5 saat falan harcadım ya :(
+          onTap: Provider.of<TodoState>(
             context,
             listen: false,
-          ).openMainPageNormalMod(),
+          ).deleteSelectedTasksButtonFunction,
+        ),
+        
+        IconCoveredGestureDetector(
+          icon: Icons.check,
+          onTap: Provider.of<TodoState>(
+            context,
+            listen: false,
+          ).achieveSelectedTasksButtonFunction
+        ),
+
+        IconCoveredGestureDetector(
+          icon: Icons.close,
+          onTap: Provider.of<TodoState>(
+            context,
+            listen: false,
+          ).openMainPageNormalMod,
         ),
       ],
     );

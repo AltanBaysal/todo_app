@@ -4,4 +4,5 @@ class Svgs{
   static const String prettyImportanceLevelSvgs = "assets/prettyimportant.svg";
   static const String normalImportanceLevelSvgs = "assets/normalimportant.svg";
   static const String lessImportanceLevelSvgs = "assets/lessimportant.svg";
+  static const String achieveSvgs = "assets/achieve.svg";
 }

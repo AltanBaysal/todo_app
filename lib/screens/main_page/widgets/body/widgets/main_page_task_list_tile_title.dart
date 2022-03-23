@@ -5,6 +5,7 @@ import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/duration_extensions.dart';
 import 'package:todo_app/screens/helper/importance_level_enum_extensions.dart';
+import 'package:todo_app/screens/helper/task_extension.dart';
 
 class MainPageTaskListTileTitle extends StatelessWidget {
   const MainPageTaskListTileTitle({
@@ -23,20 +24,19 @@ class MainPageTaskListTileTitle extends StatelessWidget {
       children: [
         Row(
           children: [
-            Consumer<TodoState>(
-              builder: (BuildContext context, value,Widget? child) => Visibility(
-                visible: value.checkboxVisibilityToggle,
-                child: Checkbox(
-                  value: value.isCheckboxChecked(task),
-                  onChanged: (bool? isChecked) => value.selectedTaskListAddRemoveTaskToggle(task),
-                ),
+            Visibility(
+              visible: Provider.of<TodoState>(context).checkboxVisibilityToggle,
+              child: Checkbox(
+                value: Provider.of<TodoState>(context).isCheckboxChecked(task),
+                onChanged: (bool? isChecked) => Provider.of<TodoState>(context,listen: false)
+                    .selectedTaskListAddRemoveTaskToggle(task),
               ),
             ),
 
             SvgCoveredSizedBox(
               height: height * 0.05,
               width: height * 0.05,
-              svgAssets: task.importanceLevel.importanceLevelSvg,
+              svgAssets:task.svg,
             ),
 
             Container(
@@ -48,7 +48,7 @@ class MainPageTaskListTileTitle extends StatelessWidget {
             ),
           ],
         ),
-
+        
         Container(
           margin: EdgeInsets.only(left: width * 0.02),
           child: Text(

@@ -8,6 +8,7 @@ import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 class TodoState with ChangeNotifier {
   SortTaskBy sortTaskBy = SortTaskBy.deadline;
   MainPageMod mainPageMod = MainPageMod.normal;
+
   final List<Task> _tasks = [];
   final List<Task> _selectedTasks = [];
 
@@ -15,20 +16,21 @@ class TodoState with ChangeNotifier {
   //? isimlendirmeler tam olmadı gibi enum'ın falan
   List<Task> get taskListInOrder => sortTaskBy.sortTaskList(taskList: _tasks);
   //? iyi bir kullanım mı?
-  bool get checkboxVisibilityToggle{
-    if(mainPageMod == MainPageMod.select) return true;
+  bool get checkboxVisibilityToggle {
+    if (mainPageMod == MainPageMod.select) return true;
     return false;
   }
 
   bool isCheckboxChecked(Task task) => _selectedTasks.contains(task);
 
-  //? isimlendirmeler
+  //? bu isimlendirme hiç olmadı
   void selectedTaskListAddRemoveTaskToggle(Task task) {
     if (_selectedTasks.contains(task)) {
-      _tasks.remove(task);
-      return;
+      _selectedTasks.remove(task);
+    } else {
+      _selectedTasks.add(task);
     }
-    _tasks.add(task);
+    notifyListeners();
   }
 
   void addNewTaskToList({required Task newTask}) {
@@ -36,20 +38,43 @@ class TodoState with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeTask({required Task task}) {
-    _tasks.remove(task);
-    notifyListeners();
+
+  //? single responsiblity'e uymuyor gibi
+  //? isimler çok kötü oldu ama daha iyisine bulamadım
+  void deleteSelectedTasksButtonFunction() {
+    deleteSelectedTasks();
+    _selectedTasks.clear();
+    openMainPageNormalMod();
   }
 
+  void achieveSelectedTasksButtonFunction() {
+    achieveSelectedTasks();
+    _selectedTasks.clear();
+    openMainPageNormalMod();
+  }
 
-  //? bunları kullanmak fazla mı abartı 
-  void openMainPageSelectMod(){
+  void openMainPageSelectMod() {
     mainPageMod = MainPageMod.select;
     notifyListeners();
   }
-  
-  void openMainPageNormalMod(){
+
+  void openMainPageNormalMod() {
     mainPageMod = MainPageMod.normal;
     notifyListeners();
+  }
+
+
+
+  //sub functions
+  void deleteSelectedTasks() {
+    for (var item in _selectedTasks) {
+      _tasks.remove(item);
+    }
+  }
+
+  void achieveSelectedTasks() {
+    for (var item in _selectedTasks) {
+      item.isCompleted = true;
+    }
   }
 }

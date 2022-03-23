@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
           Consumer<TodoState>(
             builder: (
               BuildContext context,
-              value,
+              TodoState value,
               Widget? child,
             ) {
               return MainPageAppBarActions(

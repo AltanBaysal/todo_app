@@ -9,10 +9,12 @@ class MainPageAppBarNormalModActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconCoveredGestureDetector(
       icon: Icons.menu,
-      onTap: () => Provider.of<TodoState>(
-        context,
-        listen: false,
-      ).openMainPageSelectMod(),
+      onTap: () {
+        Provider.of<TodoState>(
+          context,
+          listen: false,
+        ).openMainPageSelectMod();
+      },
     );
   }
 }

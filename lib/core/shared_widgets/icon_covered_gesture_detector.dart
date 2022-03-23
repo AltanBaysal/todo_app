@@ -10,7 +10,7 @@ class IconCoveredGestureDetector extends StatelessWidget {
   
   final EdgeInsetsGeometry? margin;
   final IconData icon;
-  final Function onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class IconCoveredGestureDetector extends StatelessWidget {
     return Container(
       margin: margin ?? EdgeInsets.all(width * 0.04),
       child: GestureDetector(
-        onTap: onTap(),
+        onTap: onTap,
         child: Icon(icon),
       ),
     );

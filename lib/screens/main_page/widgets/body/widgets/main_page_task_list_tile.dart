@@ -13,7 +13,7 @@ class MainPageTaskListTile extends StatelessWidget {
   final Task task;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height; //!! singleton olarak yaz context extension olarak
+    double height = MediaQuery.of(context).size.height; //!! singleton olarak yaz context extension olarak //? hiç class kullanmadan mı yazmam lazım
     double width = MediaQuery.of(context).size.width;
     return ExpansionTile(
       expandedAlignment: Alignment.topLeft,
