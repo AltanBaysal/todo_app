@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 
-class CreateAndEditPageCreateButton extends StatelessWidget {
-  const CreateAndEditPageCreateButton({Key? key}) : super(key: key);
+class CreateAndEditPageEditButton extends StatelessWidget {
+  const CreateAndEditPageEditButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,9 @@ class CreateAndEditPageCreateButton extends StatelessWidget {
           if (Provider.of<CreateAndEditTaskController>(
             context,
             listen: false,
-          ).createNewTask(context: context)) Navigator.pop(context);
+          ).editSelectedTask(context: context)) Navigator.pop(context);
         },
-        child: const Text(EnglishTexts.create),
+        child: const Text(EnglishTexts.edit),
       ),
     );
   }

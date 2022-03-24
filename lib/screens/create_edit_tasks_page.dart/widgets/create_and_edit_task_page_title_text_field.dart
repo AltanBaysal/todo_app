@@ -21,14 +21,18 @@ class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
           hintText: EnglishTexts.enterTitle,
         ),
         autovalidateMode: AutovalidateMode.always,
-        controller:
-            Provider.of<CreateAndEditTaskController>(context, listen: false)
-                .titleFormFieldController,
-        validator:
-            Provider.of<CreateAndEditTaskController>(context, listen: false)
-                .titleValidator,
-        key: Provider.of<CreateAndEditTaskController>(context, listen: false)
-            .titleFormFieldKey,
+        controller: Provider.of<CreateAndEditTaskController>(
+          context,
+          listen: false,
+        ).titleFormFieldController,
+        validator: Provider.of<CreateAndEditTaskController>(
+          context,
+          listen: false,
+        ).titleValidator,
+        key: Provider.of<CreateAndEditTaskController>(
+          context,
+          listen: false,
+        ).titleFormFieldKey,
       ),
     );
   }

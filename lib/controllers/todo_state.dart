@@ -4,6 +4,7 @@ import 'package:todo_app/core/enums/main_page_mod.dart';
 import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
+import 'package:todo_app/screens/helper/task_list_extensions.dart';
 
 //? bu controller ın adını mainPageController olarak değiştirmemi ister misin?
 class TodoState with ChangeNotifier {
@@ -23,7 +24,19 @@ class TodoState with ChangeNotifier {
   }
 
   bool isCheckboxChecked(Task task) => _selectedTasks.contains(task);
-
+  
+  //!!!
+  void sortTaskByToggle(){
+    //? geçiçi bir fonksiyon çalışması için yazdım
+    if(sortTaskBy == SortTaskBy.deadline){
+      sortTaskBy = SortTaskBy.importanceAndDeadline;
+    }
+    else{
+      sortTaskBy = SortTaskBy.deadline;
+    }
+    notifyListeners();
+  }
+  
   //? bu isimlendirme hiç olmadı
   void selectedTaskListAddRemoveTaskToggle(Task task) {
     if (_selectedTasks.contains(task)) {
@@ -40,7 +53,7 @@ class TodoState with ChangeNotifier {
   }
 
   //? single responsiblity'e uymuyor gibi
-  //? isimler çok kötü oldu ama daha iyisine bulamadım
+  //? isimler çok kötü oldu ama daha iyisinide bulamadım :(
   void deleteSelectedTasksButtonFunction() {
     deleteSelectedTasks();
     _selectedTasks.clear();
@@ -74,18 +87,17 @@ class TodoState with ChangeNotifier {
     task.description = description ?? task.description;
     task.importanceLevel = importanceLevel ?? task.importanceLevel;
     task.deadLine = deadLine ?? task.deadLine;
+    notifyListeners();
   }
 
   //sub functions
   void deleteSelectedTasks() {
-    for (var item in _selectedTasks) {
-      _tasks.remove(item);
-    }
+    _tasks.removeAll(list: _selectedTasks);
   }
 
   void achieveSelectedTasks() {
     for (var item in _selectedTasks) {
-      item.setIsCompletedTrue();
+      item.setTrueIsCompleted();
     }
   }
 }

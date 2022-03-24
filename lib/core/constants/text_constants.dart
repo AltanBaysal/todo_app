@@ -17,6 +17,7 @@ class EnglishTexts{
   static const String enterDescription = "Enter a Description";
 
   static const String create = "Create";
+  static const String edit = "Edit";
 
   static const String importanceLevel = "Importance Level";
   static const String creationDate = "Creation Date";

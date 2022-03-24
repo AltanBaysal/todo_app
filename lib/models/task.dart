@@ -22,7 +22,7 @@ class Task {
   String get id => _id;
   bool get isCompleted => _isCompleted;
 
-  void setIsCompletedTrue(){
+  void setTrueIsCompleted(){
     _isCompleted = true;
   }
 }
