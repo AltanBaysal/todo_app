@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/shared_widgets/svg_covered_sized_box.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/helper/duration_extensions.dart';
 import 'package:todo_app/screens/helper/task_extension.dart';
 
@@ -15,8 +16,6 @@ class MainPageTaskListTileTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     //? bunu parçalamama gerek var mı ?
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,23 +32,23 @@ class MainPageTaskListTileTitle extends StatelessWidget {
             ),
 
             SvgCoveredSizedBox(
-              height: height * 0.05,
-              width: height * 0.05,
+              height: context.height * 0.05,
+              width: context.height * 0.05,
               svgAssets:task.svg,
             ),
 
             Container(
-              margin: EdgeInsets.only(left: width * 0.03),
+              margin: EdgeInsets.only(left: context.width * 0.03),
               child: Text(
                 task.title,
-                style: TextStyle(fontSize: width * 0.045),
+                style: TextStyle(fontSize: context.width * 0.045),
               ),
             ),
           ],
         ),
         
         Container(
-          margin: EdgeInsets.only(left: width * 0.02),
+          margin: EdgeInsets.only(left: context.width * 0.02),
           child: Text(
             task.remainDuration.convertDurationToText,
           ),
