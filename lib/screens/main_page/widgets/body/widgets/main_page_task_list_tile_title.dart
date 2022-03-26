@@ -22,19 +22,32 @@ class MainPageTaskListTileTitle extends StatelessWidget {
       children: [
         Row(
           children: [
-            Visibility(
-              visible: Provider.of<TodoState>(context).checkboxVisibilityToggle,
-              child: Checkbox(
-                value: Provider.of<TodoState>(context).isCheckboxChecked(task),
-                onChanged: (bool? isChecked) => Provider.of<TodoState>(context,listen: false)
-                    .selectedTaskListAddRemoveTaskToggle(task),
-              ),
+            Consumer<MainPageController>(
+              builder: (
+                BuildContext context,
+                value,
+                Widget? child,
+              ) {
+                return Visibility(
+                  visible: value.isTaskCheckboxVisible,
+                  child: Checkbox(
+                    value: value.isCheckboxChecked(task),
+                    onChanged: (bool? isChecked) {
+                      if (isChecked == true) {
+                        value.selectedTasks.remove(task);
+                      } else {
+                        value.selectedTasks.add(task);
+                      }
+                    },
+                  ),
+                );
+              },
             ),
 
             SvgCoveredSizedBox(
               height: context.height * 0.05,
               width: context.height * 0.05,
-              svgAssets:task.svg,
+              svgAssets: task.svg,
             ),
 
             Container(

@@ -1,4 +1,4 @@
 enum MainPageMod{
-  normal,
+  listing,
   select,
 }

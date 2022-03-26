@@ -10,16 +10,16 @@ class MainPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: context.height * 0.005),
-      child: Consumer<TodoState>(
+      child: Consumer<MainPageController>(
         builder: (
           BuildContext context,
-          TodoState value,
+          MainPageController value,
           Widget? child,
         ) {
           return ListView.builder(
-            itemCount: value.taskListInOrder.length,
+            itemCount: value.taskListInSelectedOrder.length,
             itemBuilder: (context, index) {
-              return MainPageTaskListTile(task: value.taskListInOrder[index]);
+              return MainPageTaskListTile(task: value.taskListInSelectedOrder[index]);
             },
           );
         },

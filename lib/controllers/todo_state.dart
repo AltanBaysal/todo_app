@@ -1,103 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/core/enums/main_page_mod.dart';
 import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
-import 'package:todo_app/screens/helper/task_list_extensions.dart';
 
-//? bu controller ın adını mainPageController olarak değiştirmemi ister misin?
-class TodoState with ChangeNotifier {
-  SortTaskBy sortTaskBy = SortTaskBy.deadline;
-  MainPageMod mainPageMod = MainPageMod.normal;
+class MainPageController with ChangeNotifier {
+  TaskSortingType sortTaskBy = TaskSortingType.deadline;
+  MainPageMod mainPageMod = MainPageMod.listing;
 
   final List<Task> _tasks = [];
-  final List<Task> _selectedTasks = [];
+  final List<Task> selectedTasks = [];
 
   List<Task> get tasks => _tasks;
-  //? isimlendirmeler tam olmadı gibi enum'ın falan
-  List<Task> get taskListInOrder => sortTaskBy.sortTaskList(taskList: _tasks);
-  //? iyi bir kullanım mı?
-  bool get checkboxVisibilityToggle {
-    if (mainPageMod == MainPageMod.select) return true;
-    return false;
+
+  List<Task> get taskListInSelectedOrder =>
+      sortTaskBy.sortTaskList(taskList: _tasks);
+
+  bool get isTaskCheckboxVisible {
+    return mainPageMod == MainPageMod.select;
   }
 
-  bool isCheckboxChecked(Task task) => _selectedTasks.contains(task);
-  
-  //!!!
-  void sortTaskByToggle(){
-    //? geçiçi bir fonksiyon çalışması için yazdım
-    if(sortTaskBy == SortTaskBy.deadline){
-      sortTaskBy = SortTaskBy.importanceAndDeadline;
-    }
-    else{
-      sortTaskBy = SortTaskBy.deadline;
-    }
-    notifyListeners();
-  }
-  
-  //? bu isimlendirme hiç olmadı
-  void selectedTaskListAddRemoveTaskToggle(Task task) {
-    if (_selectedTasks.contains(task)) {
-      _selectedTasks.remove(task);
+  bool isCheckboxChecked(Task task) => selectedTasks.contains(task);
+
+  void toggleTaskSortType() {
+    //! bunu geliştir
+    if (sortTaskBy == TaskSortingType.deadline) {
+      sortTaskBy = TaskSortingType.importanceAndDeadline;
     } else {
-      _selectedTasks.add(task);
+      sortTaskBy = TaskSortingType.deadline;
     }
     notifyListeners();
   }
 
-  void addNewTaskToList({required Task newTask}) {
+  void addNewTaskToList(Task newTask) {
     _tasks.add(newTask);
     notifyListeners();
   }
 
-  //? single responsiblity'e uymuyor gibi
-  //? isimler çok kötü oldu ama daha iyisinide bulamadım :(
-  void deleteSelectedTasksButtonFunction() {
-    deleteSelectedTasks();
-    _selectedTasks.clear();
-    openMainPageNormalMod();
-  }
-
-  void achieveSelectedTasksButtonFunction() {
-    achieveSelectedTasks();
-    _selectedTasks.clear();
-    openMainPageNormalMod();
-  }
-
-  void openMainPageSelectMod() {
-    mainPageMod = MainPageMod.select;
-    notifyListeners();
-  }
-
-  void openMainPageNormalMod() {
-    mainPageMod = MainPageMod.normal;
+  void setMainPageMod(MainPageMod newMainPageMod) {
+    mainPageMod = newMainPageMod;
     notifyListeners();
   }
 
   void editTask({
     required Task task,
-    String? title,
-    String? description,
-    ImportanceLevel? importanceLevel,
-    DateTime? deadLine,
+    required Task newTask,
   }) {
-    task.title = title ?? task.title;
-    task.description = description ?? task.description;
-    task.importanceLevel = importanceLevel ?? task.importanceLevel;
-    task.deadLine = deadLine ?? task.deadLine;
+    task = newTask;
     notifyListeners();
   }
 
-  //sub functions
   void deleteSelectedTasks() {
-    _tasks.removeAll(list: _selectedTasks);
+    _tasks.removeWhere(
+      (task) => selectedTasks.contains(task),
+    );
   }
 
   void achieveSelectedTasks() {
-    for (var item in _selectedTasks) {
-      item.setTrueIsCompleted();
+    for (var task in selectedTasks) {
+      task.setCompleted();
     }
   }
 }

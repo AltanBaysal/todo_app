@@ -10,46 +10,36 @@ import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
 class CreateAndEditTaskController with ChangeNotifier {
-  //?bütün değişkenleri class içine koyup sayfa her yenilendiğinde classı yeniden tanımlarsam daha iyi olur gibi ?
-
-  Task? selectedTask; //? isimlendirme
+  Task? selectedTask;
   CreateAndEditPageMod createAndEditPageMod = CreateAndEditPageMod.create;
   ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
   DateTime selectedDeadLine = DateTime.now();
 
-  //? bunları sıfırlayabilmek için final yapmadım
-  TextEditingController titleFormFieldController = TextEditingController();
-  TextEditingController descriptionFormFieldController =
+  final TextEditingController titleFormFieldController =
+      TextEditingController();
+  final TextEditingController descriptionFormFieldController =
       TextEditingController();
   GlobalKey<FormState> titleFormFieldKey = GlobalKey<FormState>();
 
-  //Getters
-  String get selectedDeadLineText {
-    return "${selectedDeadLine.year}/${selectedDeadLine.month}/${selectedDeadLine.day}";
-  }
-
-  String get selectedTimeText {
-    return "${selectedDeadLine.hourToText}:${selectedDeadLine.minuteToText}";
-  }
-
   //Setters
   void setselectedImportance(ImportanceLevel? newImportanceLevel) {
-    if (newImportanceLevel == null) return;
-    selectedImportanceLevel = newImportanceLevel;
-    notifyListeners();
+    if (newImportanceLevel != null) {
+      selectedImportanceLevel = newImportanceLevel;
+      notifyListeners();
+    }
   }
 
   void setSelectedDate({required DateTime? newDate}) async {
-    //? bu hale getirdim
-    if (newDate == null) return;
-    selectedDeadLine = DateTime(
-      newDate.year,
-      newDate.month,
-      newDate.day,
-      selectedDeadLine.hour,
-      selectedDeadLine.minute,
-    );
-    notifyListeners();
+    if (newDate != null) {
+      selectedDeadLine = DateTime(
+        newDate.year,
+        newDate.month,
+        newDate.day,
+        selectedDeadLine.hour,
+        selectedDeadLine.minute,
+      );
+      notifyListeners();
+    }
   }
 
   void setSelectedTime({required TimeOfDay? newTimeOfDay}) {
@@ -64,7 +54,6 @@ class CreateAndEditTaskController with ChangeNotifier {
     notifyListeners();
   }
 
-  //? bu isim yeterince açıklayıcı değil gibi createAndEditTaskPageTitleFormFieldValidator yapmamı istermisin ismini
   String? titleValidator(String? value) {
     if (value != null && value.isNotEmpty) {
       return null;
@@ -72,8 +61,8 @@ class CreateAndEditTaskController with ChangeNotifier {
     return EnglishTexts.thisFieldCannotBeLeftBlank;
   }
 
-  //! isvalidate tekrar düzenlenecek
   bool isTitleValidate() {
+    //Todo tekrar bakılacak
     //? extra key tanımlaöaya gerek varmı controllerla direk böyle çözebiliyorum
     if (titleValidator(titleFormFieldController.text) == null) return true;
     return false;
@@ -93,7 +82,7 @@ class CreateAndEditTaskController with ChangeNotifier {
     //!toast message eklenecek
   }
 
-  //? bool eklemek zorunda kaldım pop için
+  //? bool eklemek zorunda kaldım pop için 
   bool createNewTask({required BuildContext context}) {
     if (!isDeadLineUsable() || !isTitleValidate()) return false;
 
@@ -105,34 +94,32 @@ class CreateAndEditTaskController with ChangeNotifier {
     );
 
     setDefaultSettings();
-    Provider.of<TodoState>(
+    Provider.of<MainPageController>(
       context,
       listen: false,
-    ).addNewTaskToList(newTask: newTask); //?
+    ).addNewTaskToList(newTask);
     return true;
   }
 
-  //? isimlendirme çöp
-  bool editSelectedTask({required BuildContext context}) {
-    if (!isDeadLineUsable() || !isTitleValidate() || selectedTask == null)return false;
+  // && selectedTask != null  //Altan bundan sonra üstekine bak
+  bool get areAllAreasFormValidate => isDeadLineUsable() && isTitleValidate();
 
-    Provider.of<TodoState>(
+
+
+  void editSelectedTask({required BuildContext context}) {
+    //bunu global bir fonksiyon olarak yazmamı ister misin?
+    Provider.of<MainPageController>(
       context,
       listen: false,
     ).editTask(
       task: selectedTask!,
-      deadLine: selectedDeadLine,
-      importanceLevel: selectedImportanceLevel,
-      title: titleFormFieldController.text,
-      description: descriptionFormFieldController.text,
+      newTask: Task(
+        title: titleFormFieldController.text,
+        description: descriptionFormFieldController.text,
+        importanceLevel: selectedImportanceLevel,
+        deadLine: selectedDeadLine,
+      ),
     );
-    return true;
-  }
-
-  //? bunun yerine isimlendirme olarak mainPageTaskEditButtonFunction kullanmak daha mı mantıklı
-  void setDefaultSettingsThenSetSettingsWithTask({required Task task}) {
-    setDefaultSettings();
-    setPageSettingsForEdit(task: task);
   }
 
   //? bunu kullanamak baya kötü bir yöntem gibi
@@ -140,12 +127,11 @@ class CreateAndEditTaskController with ChangeNotifier {
     selectedTask = null;
     selectedImportanceLevel = ImportanceLevel.extreme;
     selectedDeadLine = DateTime.now();
-    titleFormFieldController = TextEditingController();
-    descriptionFormFieldController = TextEditingController();
+    titleFormFieldController.clear();
+    descriptionFormFieldController.clear();
     createAndEditPageMod = CreateAndEditPageMod.create;
   }
 
-  //? isimlendirme olmadı gibi
   void setPageSettingsForEdit({required Task task}) {
     createAndEditPageMod = CreateAndEditPageMod.edit;
     selectedTask = task;
@@ -155,11 +141,12 @@ class CreateAndEditTaskController with ChangeNotifier {
     descriptionFormFieldController.text = task.description;
   }
 
-  Widget get createOrEditButtonByCreateAndEditPageMod{
-
-    switch(createAndEditPageMod){
-      case CreateAndEditPageMod.create :return const CreateAndEditPageCreateButton();
-      case CreateAndEditPageMod.edit : return const CreateAndEditPageEditButton();
+  Widget get createOrEditButtonByCreateAndEditPageMod {
+    switch (createAndEditPageMod) {
+      case CreateAndEditPageMod.create:
+        return const CreateAndEditPageCreateButton();
+      case CreateAndEditPageMod.edit:
+        return const CreateAndEditPageEditButton();
     }
   }
 }

@@ -1,4 +1,4 @@
-enum SortTaskBy{
+enum TaskSortingType{
   importanceAndDeadline,
   deadline,
 }

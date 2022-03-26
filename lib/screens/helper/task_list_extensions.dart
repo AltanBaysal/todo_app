@@ -14,12 +14,13 @@ extension TaskListExtensions on List<Task> {
   }
 
   List<Task> get withoutAchievedTask{
-    return removeAll(list: achievedTasks);
+    return where((task) => !task.isCompleted).toList();
   }
 
   List<Task> get inImportanceLevelAndTimeOrder{
+    //! bunu geliştir
     List<Task> newList = [];
-    for (var item in getImportanceLevelValuesInImportanceOrder()) {
+    for (var item in importanceLevelValuesInImportanceOrder) {
       newList += getTaskListByImportanceLevel(importanceLevel: item).inTimeOrder;
     }
     return newList;
@@ -34,26 +35,11 @@ extension TaskListExtensions on List<Task> {
   }
 
   List<Task> get achievedTasks{
-    return where((element) => element.isCompleted == true).toList();
+    return where((element) => element.isCompleted).toList();
   }
   
   List<Task> getTaskListByImportanceLevel({required ImportanceLevel importanceLevel}) {
-    List<Task> newList = [];
-    for (var element in this) {
-      if(element.importanceLevel == importanceLevel){
-        newList.add(element);
-      }
-    }
-    return newList;
+    return where((task) => task.importanceLevel == importanceLevel).toList();
   }
   
-  //! bunu bütün listelerde kullanılabilecek hale getir
-  List<Task> removeAll({required List<Task> list}){
-    List<Task> mainList = this;
-    for (var item in list) {
-      mainList.remove(item);
-    }
-    return mainList;
-  }
- 
 } 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IconCoveredGestureDetector extends StatelessWidget {
-  const IconCoveredGestureDetector({
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({
     Key? key,
     this.margin,
     required this.icon,
@@ -10,7 +10,7 @@ class IconCoveredGestureDetector extends StatelessWidget {
   
   final EdgeInsetsGeometry? margin;
   final IconData icon;
-  final void Function()? onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,13 @@ class CreateAndEditPageEditButton extends StatelessWidget {
           if (Provider.of<CreateAndEditTaskController>(
             context,
             listen: false,
-          ).editSelectedTask(context: context)) Navigator.pop(context);
+          ).areAllAreasFormValidate) {
+            Provider.of<CreateAndEditTaskController>(
+              context,
+              listen: false,
+            ).editSelectedTask(context: context);
+            Navigator.pop(context);
+          }
         },
         child: const Text(EnglishTexts.edit),
       ),

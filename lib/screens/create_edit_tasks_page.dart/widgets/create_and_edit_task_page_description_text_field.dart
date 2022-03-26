@@ -15,7 +15,6 @@ class CreateAndEditTaskPageDescriptionTextField extends StatelessWidget {
       ),
       child: TextFormField(
         decoration: const InputDecoration(
-          //? hintext controllerdan gelmeliymiş gibi hissediyorum
           hintText: EnglishTexts.enterDescription,
         ),
         autovalidateMode: AutovalidateMode.always,

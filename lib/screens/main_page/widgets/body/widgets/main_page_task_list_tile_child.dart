@@ -18,7 +18,6 @@ class MainPageTaskListTileChild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -54,10 +53,12 @@ class MainPageTaskListTileChild extends StatelessWidget {
           style: TextStyle(fontSize: context.width * 0.04),
         ),
 
-        IconCoveredGestureDetector(
+        CustomIconButton(
           icon: Icons.edit,
           onTap: () {
-            Provider.of<CreateAndEditTaskController>(context,listen: false).setDefaultSettingsThenSetSettingsWithTask(task: task);
+            Provider.of<CreateAndEditTaskController>(context, listen: false)
+              ..setDefaultSettings()
+              ..setPageSettingsForEdit(task: task);
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -66,7 +67,6 @@ class MainPageTaskListTileChild extends StatelessWidget {
             );
           },
         ),
-      
       ],
     );
   }

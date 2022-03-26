@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
+import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
 class CreateAndEditTaskPageTimePicker extends StatelessWidget {
   const CreateAndEditTaskPageTimePicker({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class CreateAndEditTaskPageTimePicker extends StatelessWidget {
           value,
           Widget? child,
         ) {
-          return Text(value.selectedTimeText);
+          return Text(value.selectedDeadLine.timeText);
         },
       ),
     );

@@ -7,9 +7,9 @@ class MainPageAppBarLeading extends StatelessWidget {
   const MainPageAppBarLeading({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return IconCoveredGestureDetector(
+    return CustomIconButton(
       icon: Icons.share,
-      onTap: () => Provider.of<TodoState>(context,listen: false).sortTaskByToggle(),
+      onTap: () => Provider.of<MainPageController>(context,listen: false).toggleTaskSortType(),
     );
   }
 }

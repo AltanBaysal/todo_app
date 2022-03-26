@@ -15,10 +15,10 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         leading: const MainPageAppBarLeading(),        
         actions: [
-          Consumer<TodoState>(
+          Consumer<MainPageController>(
             builder: (
               BuildContext context,
-              TodoState value,
+              MainPageController value,
               Widget? child,
             ) {
               return MainPageAppBarActions(
