@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/enums/create_and_edit_task_page_mod.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
 class CreateAndEditTaskController with ChangeNotifier {
@@ -84,18 +83,12 @@ class CreateAndEditTaskController with ChangeNotifier {
 
     setDefaultSettings();
 
-    Provider.of<MainPageController>(
-      context,
-      listen: false,
-    ).addNewTaskToList(newTask);
+    context.providerOfMainPageController.addNewTaskToList(newTask);
   }
 
   void editSelectedTask({required BuildContext context}) {
     //? bunu helper a yazmamı ister misin?
-    Provider.of<MainPageController>(
-      context,
-      listen: false,
-    ).editTask(
+    context.providerOfMainPageController.editTask(
       task: selectedTask!,
       newTask: Task(
         title: titleFormFieldController.text,

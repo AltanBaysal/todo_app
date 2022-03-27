@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/todo_state.dart';
+import 'package:todo_app/controllers/main_page_controller.dart';
 import 'package:todo_app/screens/main_page/widgets/app_bar/main_page_app_bar_actions.dart';
 import 'package:todo_app/screens/main_page/widgets/app_bar/main_page_app_bar_leading.dart';
 import 'package:todo_app/screens/main_page/widgets/body/main_page_body.dart';

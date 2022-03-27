@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 
@@ -20,18 +18,10 @@ class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
           hintText: EnglishTexts.enterTitle,
         ),
         autovalidateMode: AutovalidateMode.always,
-        controller: Provider.of<CreateAndEditTaskController>(
-          context,
-          listen: false,
-        ).titleFormFieldController,
-        validator: Provider.of<CreateAndEditTaskController>(
-          context,
-          listen: false,
-        ).titleValidator,
-        key: Provider.of<CreateAndEditTaskController>(
-          context,
-          listen: false,
-        ).titleFormFieldKey,
+        controller: context
+            .providerOfCreateAndEditTaskController.titleFormFieldController,
+        validator: context.providerOfCreateAndEditTaskController.titleValidator,
+        key: context.providerOfCreateAndEditTaskController.titleFormFieldKey,
       ),
     );
   }

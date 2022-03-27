@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/shared_widgets/icon_covered_gesture_detector.dart';
 import 'package:todo_app/models/task.dart';
@@ -55,7 +53,7 @@ class MainPageTaskListTileChild extends StatelessWidget {
         CustomIconButton(
           icon: Icons.edit,
           onTap: () {
-            Provider.of<CreateAndEditTaskController>(context, listen: false)
+            context.providerOfCreateAndEditTaskController
               ..setDefaultSettings()
               ..setPageSettingsForEdit(task: task);
             Navigator.push(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/create_and_edit_task_controller.dart';
+import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
 
 class CreateAndEditTaskPageDatePicker extends StatelessWidget {
@@ -10,10 +11,7 @@ class CreateAndEditTaskPageDatePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        Provider.of<CreateAndEditTaskController>(
-          context,
-          listen: false,
-        ).setSelectedDate(
+        context.providerOfCreateAndEditTaskController.setSelectedDate(
           newDate: await showDatePicker(
             context: context,
             initialDate: DateTime.now(),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/todo_state.dart';
 import 'package:todo_app/core/enums/main_page_mod.dart';
 import 'package:todo_app/core/shared_widgets/icon_covered_gesture_detector.dart';
+import 'package:todo_app/screens/helper/build_context_extension.dart';
 
 class MainPageAppBarSelectModActions extends StatelessWidget {
   const MainPageAppBarSelectModActions({Key? key}) : super(key: key);
@@ -16,10 +15,7 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
           //? buradaki fonksiyonu direk eşitlemeyince patlıyor nedeni notfiy listener erken çalıştığı içinmiş ama tam anlamadım
           //? sorunu çözdüm ama nasıl çözdüğümü bende anlamadım 5 saat falan harcadım ya :(
           onTap: () {
-            Provider.of<MainPageController>(
-              context,
-              listen: false,
-            )
+            context.providerOfMainPageController
               ..deleteSelectedTasks()
               ..selectedTasks.clear()
               ..setMainPageMod(MainPageMod.listing);
@@ -29,10 +25,7 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
           icon: Icons.check,
           //? bu provider of lar için extension yazmamı istermisin böyle kötü gözüküyorlar
           onTap: () {
-            Provider.of<MainPageController>(
-              context,
-              listen: false,
-            )
+            context.providerOfMainPageController
               ..achieveSelectedTasks()
               ..selectedTasks.clear()
               ..setMainPageMod(MainPageMod.listing);
@@ -40,10 +33,7 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
         ),
         CustomIconButton(
           icon: Icons.close,
-          onTap: () => Provider.of<MainPageController>(
-            context,
-            listen: false,
-          ).setMainPageMod(MainPageMod.listing),
+          onTap: () => context.providerOfMainPageController.setMainPageMod(MainPageMod.listing),
         ),
       ],
     );

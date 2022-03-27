@@ -2,6 +2,7 @@ import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:uuid/uuid.dart';
 
 class Task {
+  //? burdaki bütün propertyleri gizli yapıp yinede constructırı isimlendirilmiş yapabilirim factory kullanarak yapmamı ister misin?
   String title;
   String description;
   ImportanceLevel importanceLevel;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/todo_state.dart';
+import 'package:todo_app/controllers/main_page_controller.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/main_page/widgets/body/widgets/main_page_task_list_tile.dart';
 

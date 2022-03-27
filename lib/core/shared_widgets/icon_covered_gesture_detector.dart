@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/screens/helper/build_context_extension.dart';
 
 class CustomIconButton extends StatelessWidget {
   const CustomIconButton({
@@ -14,9 +15,8 @@ class CustomIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Container(
-      margin: margin ?? EdgeInsets.all(width * 0.04),
+      margin: margin ?? EdgeInsets.all(context.width * 0.04),
       child: GestureDetector(
         onTap: onTap,
         child: Icon(icon),
