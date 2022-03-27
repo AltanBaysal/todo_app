@@ -22,7 +22,6 @@ class MainPageTaskListTileChild extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //! tasarımını baştan yap
-        //! SOFTWRAP VE bir textin maximum satrı uzunluğunun nasıl  araştır
         Text(
           "${EnglishTexts.importanceLevel} : ${task.importanceLevel.importanceLevelText}",
           style: TextStyle(fontSize: context.width * 0.04),

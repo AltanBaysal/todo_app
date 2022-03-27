@@ -5,6 +5,7 @@ import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_
 import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_dropdown_menu.dart';
 import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_time_picker.dart';
 import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_title_text_field.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_or_edit_button_by_create_and_edit_page_mod.dart';
 import 'create_and_edit_task_page_date_picker.dart';
 
 class CreateAndEditTaskPageBody extends StatelessWidget {
@@ -24,7 +25,11 @@ class CreateAndEditTaskPageBody extends StatelessWidget {
           ],
         ),
         const CreateAndEditTaskPageDescriptionTextField(),
-        Provider.of<CreateAndEditTaskController>(context).createOrEditButtonByCreateAndEditPageMod,
+        CreateOrEditButtonByCreateAndEditPageMod(
+          createAndEditPageMod:
+              Provider.of<CreateAndEditTaskController>(context)
+                  .createAndEditPageMod,
+        ),
       ],
     );
   }

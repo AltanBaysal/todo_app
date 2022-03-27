@@ -14,9 +14,20 @@ class CreateAndEditPageCreateButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           if (Provider.of<CreateAndEditTaskController>(
-            context,
-            listen: false,
-          ).createNewTask(context: context)) Navigator.pop(context);
+                context,
+                listen: false,
+              ).areAllAreasFormValidate &&
+              Provider.of<CreateAndEditTaskController>( //? bunu buraya koymak mantıklı mı?
+                    context,
+                    listen: false,
+                  ).selectedTask !=
+                  null) {
+            Provider.of<CreateAndEditTaskController>(
+              context,
+              listen: false,
+            ).createNewTask(context: context);
+            Navigator.pop(context);
+          }
         },
         child: const Text(EnglishTexts.create),
       ),

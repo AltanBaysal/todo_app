@@ -7,18 +7,13 @@ import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 class MainPageController with ChangeNotifier {
   TaskSortingType sortTaskBy = TaskSortingType.deadline;
   MainPageMod mainPageMod = MainPageMod.listing;
-
   final List<Task> _tasks = [];
   final List<Task> selectedTasks = [];
 
   List<Task> get tasks => _tasks;
+  List<Task> get taskListInSelectedOrder => sortTaskBy.sortTaskList(taskList: _tasks);
+  bool get isTaskCheckboxVisible => mainPageMod == MainPageMod.select;
 
-  List<Task> get taskListInSelectedOrder =>
-      sortTaskBy.sortTaskList(taskList: _tasks);
-
-  bool get isTaskCheckboxVisible {
-    return mainPageMod == MainPageMod.select;
-  }
 
   bool isCheckboxChecked(Task task) => selectedTasks.contains(task);
 
@@ -42,6 +37,7 @@ class MainPageController with ChangeNotifier {
     notifyListeners();
   }
 
+  //? bunu helper a yazabilirim
   void editTask({
     required Task task,
     required Task newTask,

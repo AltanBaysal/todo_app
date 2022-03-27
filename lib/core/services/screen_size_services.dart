@@ -7,7 +7,6 @@ class ScreenSizeService{
   ScreenSizeService._({required this.height, required this.width});
 
   static ScreenSizeService? instance;
-  //! static ve factory arasındaki farkı araştır
 
   factory ScreenSizeService ({required BuildContext context}) {
     return instance ??= ScreenSizeService._(
