@@ -12,28 +12,27 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
       children: [
         CustomIconButton(
           icon: Icons.delete,
-          //? buradaki fonksiyonu direk eşitlemeyince patlıyor nedeni notfiy listener erken çalıştığı içinmiş ama tam anlamadım
-          //? sorunu çözdüm ama nasıl çözdüğümü bende anlamadım 5 saat falan harcadım ya :(
           onTap: () {
+            //! böyle kullan
+            context.providerOfMainPageController.deleteSelectedTasks();
+            context.providerOfMainPageController.selectedTasks.clear();
             context.providerOfMainPageController
-              ..deleteSelectedTasks()
-              ..selectedTasks.clear()
-              ..setMainPageMod(MainPageMod.listing);
+                .setMainPageMod(MainPageMod.listing);
           },
         ),
         CustomIconButton(
           icon: Icons.check,
-          //? bu provider of lar için extension yazmamı istermisin böyle kötü gözüküyorlar
           onTap: () {
+            context.providerOfMainPageController.achieveSelectedTasks();
+            context.providerOfMainPageController.selectedTasks.clear();
             context.providerOfMainPageController
-              ..achieveSelectedTasks()
-              ..selectedTasks.clear()
-              ..setMainPageMod(MainPageMod.listing);
+                .setMainPageMod(MainPageMod.listing);
           },
         ),
         CustomIconButton(
           icon: Icons.close,
-          onTap: () => context.providerOfMainPageController.setMainPageMod(MainPageMod.listing),
+          onTap: () => context.providerOfMainPageController
+              .setMainPageMod(MainPageMod.listing),
         ),
       ],
     );

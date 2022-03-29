@@ -16,7 +16,7 @@ class MainPageTaskListTileTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //? bunu parçalamama gerek var mı ?
+    //! value yi dışardan al
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

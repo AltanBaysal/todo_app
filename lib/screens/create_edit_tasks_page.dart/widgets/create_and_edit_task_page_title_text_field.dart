@@ -14,7 +14,6 @@ class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
       ),
       child: TextFormField(
         decoration: const InputDecoration(
-          //? hintext controllerdan gelmeliymiş gibi hissediyorum
           hintText: EnglishTexts.enterTitle,
         ),
         autovalidateMode: AutovalidateMode.always,

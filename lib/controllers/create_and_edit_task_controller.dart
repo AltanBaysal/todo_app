@@ -12,10 +12,11 @@ class CreateAndEditTaskController with ChangeNotifier {
   ImportanceLevel selectedImportanceLevel = ImportanceLevel.extreme;
   DateTime selectedDeadLine = DateTime.now();
 
-  final TextEditingController titleFormFieldController =TextEditingController();
-  final TextEditingController descriptionFormFieldController =TextEditingController();
+  final TextEditingController titleFormFieldController =
+      TextEditingController();
+  final TextEditingController descriptionFormFieldController =
+      TextEditingController();
   GlobalKey<FormState> titleFormFieldKey = GlobalKey<FormState>();
-
 
   void setselectedImportance(ImportanceLevel? newImportanceLevel) {
     if (newImportanceLevel != null) {
@@ -55,21 +56,13 @@ class CreateAndEditTaskController with ChangeNotifier {
 
     return EnglishTexts.thisFieldCannotBeLeftBlank;
   }
-  
-  bool get isTitleValidate{
-    //Todo tekrar bakılacak
-    //? extra key tanımlaöaya gerek varmı controllerla direk böyle çözebiliyorum
-    return (titleValidator(titleFormFieldController.text) == null);
-    
-    //? //! current state neden sürekli null dönüyor
-    /*
-    if(titleFormFieldKey.currentState != null){
-      return titleFormFieldKey.currentState!.validate();
-    }
-    */
+
+  bool get isTitleValidate {
+    return titleFormFieldKey.currentState!.validate();
   }
 
-  bool get isDeadLineUsable => !selectedDeadLine.isInPast; //!toast message eklenecek
+  bool get isDeadLineUsable =>
+      !selectedDeadLine.isInPast; //!toast message eklenecek
 
   bool get areAllAreasFormValidate => isDeadLineUsable && isTitleValidate;
 
@@ -87,7 +80,6 @@ class CreateAndEditTaskController with ChangeNotifier {
   }
 
   void editSelectedTask({required BuildContext context}) {
-    //? bunu helper a yazmamı ister misin?
     context.providerOfMainPageController.editTask(
       task: selectedTask!,
       newTask: Task(
@@ -99,7 +91,6 @@ class CreateAndEditTaskController with ChangeNotifier {
     );
   }
 
-  //? bunu kullanamak baya kötü bir yöntem gibi
   void setDefaultSettings() {
     selectedTask = null;
     selectedImportanceLevel = ImportanceLevel.extreme;

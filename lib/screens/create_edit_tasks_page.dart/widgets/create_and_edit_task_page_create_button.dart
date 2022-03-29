@@ -11,7 +11,6 @@ class CreateAndEditPageCreateButton extends StatelessWidget {
       margin: EdgeInsets.only(top: context.height * 0.04),
       child: ElevatedButton(
         onPressed: () {
-          //? context.providerOfCreateAndEditTaskController.selectedTask != null  bunu burda kullanmak mantıklı mı?
           if (context.providerOfCreateAndEditTaskController
                   .areAllAreasFormValidate &&
               context.providerOfCreateAndEditTaskController.selectedTask !=

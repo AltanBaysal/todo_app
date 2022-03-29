@@ -8,7 +8,6 @@ extension ContextExtension on BuildContext{
   double get height => ScreenSizeService(context: this).height;
   double get width => ScreenSizeService(context: this).width;
 
-  //? kullanmak mantıklı mı
   MainPageController get providerOfMainPageController => Provider.of<MainPageController>(this,listen: false,);
   CreateAndEditTaskController get providerOfCreateAndEditTaskController => Provider.of<CreateAndEditTaskController>(this,listen: false,);
 }

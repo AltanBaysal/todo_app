@@ -4,8 +4,7 @@ import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_
 
 
 extension ImportanceLevelEnumListExtensions on List<ImportanceLevel> {
-  //? doğru bir kullanım değil gibi
-  //? isimlendirme?
+  //! view içerisine fonksiyon olarak taşınacak
   List<DropdownMenuItem<ImportanceLevel>> get toCreateAndEditPageImportanceLevelDropdownItemList{
     return map(
       (ImportanceLevel importanceLevel) => DropdownMenuItem<ImportanceLevel>(
