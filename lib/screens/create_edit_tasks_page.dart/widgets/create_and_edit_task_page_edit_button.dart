@@ -11,8 +11,7 @@ class CreateAndEditPageEditButton extends StatelessWidget {
       margin: EdgeInsets.only(top: context.height * 0.04),
       child: ElevatedButton(
         onPressed: () {
-          if (context
-              .providerOfCreateAndEditTaskController.areAllAreasFormValidate) {
+          if (context.providerOfCreateAndEditTaskController.areAllAreasFormValidate) {
             context.providerOfCreateAndEditTaskController
                 .editSelectedTask(context: context);
             Navigator.pop(context);

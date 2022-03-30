@@ -34,9 +34,10 @@ class MainPageTaskListTileTitle extends StatelessWidget {
                     value: value.isCheckboxChecked(task),
                     onChanged: (bool? isChecked) {
                       if (isChecked == true) {
-                        value.selectedTasks.remove(task);
+                        //?bura güzel olmadı
+                        value.addToTaskListWithNotifyListener(newTask: task, tasklist: value.selectedTasks);
                       } else {
-                        value.selectedTasks.add(task);
+                        value.removeFromTaskListWithNotifyListener(newTask: task, tasklist: value.selectedTasks);
                       }
                     },
                   ),

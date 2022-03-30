@@ -40,5 +40,9 @@ extension TaskListExtensions on List<Task> {
   List<Task> getTaskListByImportanceLevel({required ImportanceLevel importanceLevel}) {
     return where((task) => task.importanceLevel == importanceLevel).toList();
   }
+
+  Task findTaskById(String taskId){
+    return firstWhere((task) => task.id == taskId);
+  }
   
 } 

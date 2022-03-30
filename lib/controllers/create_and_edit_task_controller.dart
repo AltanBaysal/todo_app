@@ -52,13 +52,15 @@ class CreateAndEditTaskController with ChangeNotifier {
   }
 
   String? titleValidator(String? value) {
-    if (value != null && value.isNotEmpty) return null;
-
-    return EnglishTexts.thisFieldCannotBeLeftBlank;
+    if (value == null || value.isEmpty) return EnglishTexts.thisFieldCannotBeLeftBlank;
+    return null;
   }
 
   bool get isTitleValidate {
-    return titleFormFieldKey.currentState!.validate();
+    if (titleValidator(titleFormFieldController.text) == null) return true;
+    return false;
+    //? bu çalışmıyordu bakmayı unuttuk
+    //return titleFormFieldKey.currentState!.validate();
   }
 
   bool get isDeadLineUsable =>
@@ -75,8 +77,11 @@ class CreateAndEditTaskController with ChangeNotifier {
     );
 
     setDefaultSettings();
-
-    context.providerOfMainPageController.addNewTaskToList(newTask);
+    //? böyle kullanmak mantıklı mı ?
+    context.providerOfMainPageController.addToTaskListWithNotifyListener(
+      newTask: newTask,
+      tasklist: context.providerOfMainPageController.tasks,
+    );
   }
 
   void editSelectedTask({required BuildContext context}) {
