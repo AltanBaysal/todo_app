@@ -53,12 +53,10 @@ class MainPageTaskListTileChild extends StatelessWidget {
         CustomIconButton(
           icon: Icons.edit,
           onTap: () {
-            context.providerOfCreateAndEditTaskController.setDefaultSettings();
-            context.providerOfCreateAndEditTaskController.setPageSettingsForEdit(task: task);
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const CreateAndEditTasksPage(),
+                builder: (context) => CreateAndEditTasksPage(task: task),
               ),
             );
           },

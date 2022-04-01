@@ -12,8 +12,7 @@ class CreateAndEditPageCreateButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           if (context.providerOfCreateAndEditTaskController.areAllAreasFormValidate) {
-            context.providerOfCreateAndEditTaskController
-                .createNewTask(context: context);
+            context.providerOfCreateAndEditTaskController.createNewTask();
             Navigator.pop(context);
           }
         },

@@ -16,7 +16,7 @@ class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
         decoration: const InputDecoration(
           hintText: EnglishTexts.enterTitle,
         ),
-        autovalidateMode: AutovalidateMode.always,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: context
             .providerOfCreateAndEditTaskController.titleFormFieldController,
         validator: context.providerOfCreateAndEditTaskController.titleValidator,

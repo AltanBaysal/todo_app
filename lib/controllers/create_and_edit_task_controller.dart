@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/constants/text_constants.dart';
 import 'package:todo_app/core/enums/create_and_edit_task_page_mod.dart';
 import 'package:todo_app/core/enums/importance_level_enum.dart';
+import 'package:todo_app/core/services/global_build_context_services.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/helper/date_time_extensions.dart';
@@ -68,7 +69,7 @@ class CreateAndEditTaskController with ChangeNotifier {
 
   bool get areAllAreasFormValidate => isDeadLineUsable && isTitleValidate;
 
-  void createNewTask({required BuildContext context}) {
+  void createNewTask() {
     Task newTask = Task(
       title: titleFormFieldController.text,
       description: descriptionFormFieldController.text,
@@ -76,16 +77,15 @@ class CreateAndEditTaskController with ChangeNotifier {
       deadLine: selectedDeadLine,
     );
 
-    setDefaultSettings();
     //? böyle kullanmak mantıklı mı ?
-    context.providerOfMainPageController.addToTaskListWithNotifyListener(
+    GlobalBuildContextService().globalBuildContext.providerOfMainPageController.addToTaskListWithNotifyListener(
       newTask: newTask,
-      tasklist: context.providerOfMainPageController.tasks,
+      tasklist: GlobalBuildContextService().globalBuildContext.providerOfMainPageController.tasks,
     );
   }
 
-  void editSelectedTask({required BuildContext context}) {
-    context.providerOfMainPageController.editTask(
+  void editSelectedTask() {
+    GlobalBuildContextService().globalBuildContext.providerOfMainPageController.editTask(
       task: selectedTask!,
       newTask: Task(
         title: titleFormFieldController.text,
@@ -95,8 +95,17 @@ class CreateAndEditTaskController with ChangeNotifier {
       ),
     );
   }
+  
+  //? fonsiyon nasıl
+  void setPageSetting({Task? task}){
+    if(task == null){
+      setPageSettingsForCreate();
+    }else{
+      setPageSettingsForEdit(task);
+    }
+  }
 
-  void setDefaultSettings() {
+  void setPageSettingsForCreate() {
     selectedTask = null;
     selectedImportanceLevel = ImportanceLevel.extreme;
     selectedDeadLine = DateTime.now();
@@ -105,7 +114,10 @@ class CreateAndEditTaskController with ChangeNotifier {
     createAndEditPageMod = CreateAndEditPageMod.create;
   }
 
-  void setPageSettingsForEdit({required Task task}) {
+  void setPageSettingsForEdit(Task task) {
+    titleFormFieldController.clear();
+    descriptionFormFieldController.clear();
+
     createAndEditPageMod = CreateAndEditPageMod.edit;
     selectedTask = task;
     selectedImportanceLevel = task.importanceLevel;
