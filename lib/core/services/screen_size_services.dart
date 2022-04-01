@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ScreenSizeService{
-  double height;
-  double width;
+  final double height;
+  final double width;
 
   ScreenSizeService._({required this.height, required this.width});
 

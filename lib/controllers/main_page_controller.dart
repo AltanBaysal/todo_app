@@ -4,6 +4,7 @@ import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
+//! providerları geliştir
 class MainPageController with ChangeNotifier {
   TaskSortingType sortTaskBy = TaskSortingType.deadline;
   MainPageMod mainPageMod = MainPageMod.listing;

@@ -13,7 +13,6 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
         CustomIconButton(
           icon: Icons.delete,
           onTap: () {
-            //! böyle kullan
             context.providerOfMainPageController.deleteSelectedTasks();
             context.providerOfMainPageController.selectedTasks.clear();
             context.providerOfMainPageController

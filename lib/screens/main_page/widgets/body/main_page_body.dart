@@ -19,7 +19,7 @@ class MainPageBody extends StatelessWidget {
           return ListView.builder(
             itemCount: value.taskListInSelectedOrder.length,
             itemBuilder: (context, index) {
-              return MainPageTaskListTile(task: value.taskListInSelectedOrder[index]);
+              return MainPageTaskListTile(task: value.taskListInSelectedOrder[index],value: value,);
             },
           );
         },
