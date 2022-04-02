@@ -11,5 +11,3 @@ class GlobalBuildContextService {
         : throw Exception("globalContext have to initialize");
   }
 }
-
-//? key yerine context aldım

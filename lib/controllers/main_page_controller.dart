@@ -29,26 +29,24 @@ class MainPageController with ChangeNotifier {
     }
     notifyListeners();
   }
-  
-  //? bunları kullanmak mantıklı mı ?
-  void addToTaskListWithNotifyListener({required Task newTask,required List<Task> tasklist}) {
+
+  void addToTaskListWithNotifyListener(
+      {required Task newTask, required List<Task> tasklist}) {
     tasklist.add(newTask);
     notifyListeners();
   }
-  
-  //? bunları kullanmak mantıklı mı ?
-  void removeFromTaskListWithNotifyListener({required Task newTask,required List<Task> tasklist}){
+
+  void removeFromTaskListWithNotifyListener(
+      {required Task newTask, required List<Task> tasklist}) {
     tasklist.remove(newTask);
     notifyListeners();
   }
-  
 
   void setMainPageMod(MainPageMod newMainPageMod) {
     mainPageMod = newMainPageMod;
     notifyListeners();
   }
 
-  //? burası çok kötü oldu
   void editTask({
     required Task task,
     required Task newTask,

@@ -7,6 +7,8 @@ class CreateAndEditTaskPageTitleTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.providerOfCreateAndEditTaskController.titleFormFieldKey =
+        GlobalKey<FormState>();
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: context.height * 0.01,

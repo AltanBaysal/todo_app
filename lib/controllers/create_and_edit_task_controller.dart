@@ -60,8 +60,6 @@ class CreateAndEditTaskController with ChangeNotifier {
   bool get isTitleValidate {
     if (titleValidator(titleFormFieldController.text) == null) return true;
     return false;
-    //? bu çalışmıyordu bakmayı unuttuk
-    //return titleFormFieldKey.currentState!.validate();
   }
 
   bool get isDeadLineUsable =>
@@ -77,7 +75,6 @@ class CreateAndEditTaskController with ChangeNotifier {
       deadLine: selectedDeadLine,
     );
 
-    //? böyle kullanmak mantıklı mı ?
     GlobalBuildContextService().globalBuildContext.providerOfMainPageController.addToTaskListWithNotifyListener(
       newTask: newTask,
       tasklist: GlobalBuildContextService().globalBuildContext.providerOfMainPageController.tasks,
@@ -96,7 +93,6 @@ class CreateAndEditTaskController with ChangeNotifier {
     );
   }
   
-  //? fonsiyon nasıl
   void setPageSetting({Task? task}){
     if(task == null){
       setPageSettingsForCreate();

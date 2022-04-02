@@ -27,7 +27,6 @@ class MainPageTaskListTileTitle extends StatelessWidget {
                 value: value.isCheckboxChecked(task),
                 onChanged: (bool? isChecked) {
                   if (isChecked == true) {
-                    //?bura güzel olmadı
                     value.addToTaskListWithNotifyListener(
                         newTask: task, tasklist: value.selectedTasks);
                   } else {

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    GlobalBuildContextService(globalContext: context); //? bunu buraya koydum
+    GlobalBuildContextService(globalContext: context);
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Todapp',
