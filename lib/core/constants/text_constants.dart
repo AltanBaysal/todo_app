@@ -27,5 +27,7 @@ class EnglishTexts{
   static const String description = "Description";
 
   static const String thisFieldCannotBeLeftBlank = "This field cannot be left blank";
+
+  static const String timeOver = "Timer Over";
   
 }

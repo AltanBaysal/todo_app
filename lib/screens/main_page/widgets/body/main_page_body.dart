@@ -10,6 +10,7 @@ class MainPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: context.height * 0.005),
+      //? burayı selectorle yazsam hoş olur gibi  task listin uzunluğunu alır ve sadece o değiştiğinde build olur
       child: Consumer<MainPageController>(
         builder: (
           BuildContext context,

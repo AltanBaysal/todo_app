@@ -3,7 +3,7 @@ import 'package:todo_app/core/constants/text_constants.dart';
 extension DurationExtensions on Duration {
   String get convertDurationToText{
     if (isNegative) {
-      return "Time Over";
+      return EnglishTexts.timeOver;
     }
 
     if (inDays > 6) {
