@@ -4,7 +4,11 @@ import 'package:todo_app/core/init/controller_list.dart';
 import 'package:todo_app/core/services/global_build_context_services.dart';
 import 'package:todo_app/screens/main_page/main_page.dart';
 
-void main() {
+import 'core/init/init.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  init();
   runApp(
     MultiProvider(
       providers: controllerList,
