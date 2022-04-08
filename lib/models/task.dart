@@ -17,7 +17,7 @@ class Task {
     required this.deadLine,
   });
 
-  Duration get taskTotalDuration => deadLine.difference(creationDate);
+  Duration get totalDuration => deadLine.difference(creationDate);
   Duration get remainDuration => deadLine.difference(DateTime.now());
   String get id => _id;
   bool get isCompleted => _isCompleted;

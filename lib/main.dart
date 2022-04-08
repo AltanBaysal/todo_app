@@ -30,6 +30,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//provider of u araştır
-//eğer veride bir güncelleme olmayacaksa, widgetın tekrar çizilmesine gerek yoksa consumer kullanma!

@@ -22,7 +22,7 @@ class EnglishTexts{
   static const String importanceLevel = "Importance Level";
   static const String creationDate = "Creation Date";
   static const String deadline = "Deadline";
-  static const String totalTaskDuration = "Total Task Duration";
+  static const String totalDuration = "Total Duration";
   static const String remainDuration = "Remain Duration";
   static const String description = "Description";
 

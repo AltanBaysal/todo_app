@@ -5,7 +5,7 @@ extension DateTimeExtensions on DateTime{
   String get monthToText => month.toString().padLeft(2,"0");
   bool get isInPast => isBefore(DateTime.now());
 
-  String get dateText {
+  String get text {
     return "$dayToText/$monthToText/$year";
   }
 

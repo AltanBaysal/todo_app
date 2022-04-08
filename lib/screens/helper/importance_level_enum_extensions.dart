@@ -18,7 +18,7 @@ extension ImportanceLevelEnumExtensions on ImportanceLevel {
     }
   }
 
-  String get importanceLevelText {
+  String get text {
     switch (this) {
       case ImportanceLevel.extreme:
         return EnglishTexts.importanceLevelExtreme;

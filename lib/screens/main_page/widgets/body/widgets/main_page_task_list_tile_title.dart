@@ -56,7 +56,7 @@ class MainPageTaskListTileTitle extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: context.width * 0.02),
           child: Text(
-            task.remainDuration.convertDurationToText,
+            task.remainDuration.text,
           ),
         ),
       ],

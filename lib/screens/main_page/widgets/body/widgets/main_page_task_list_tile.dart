@@ -7,24 +7,25 @@ import 'package:todo_app/screens/main_page/widgets/body/widgets/main_page_task_l
 import 'main_page_task_list_tile_child.dart';
 
 class MainPageTaskListTile extends StatelessWidget {
-  const MainPageTaskListTile({
-    Key? key,
-    required this.task,
-    required this.value
-  }) : super(key: key);
+  const MainPageTaskListTile(
+      {Key? key, required this.task, required this.value})
+      : super(key: key);
 
   final MainPageController value;
   final Task task;
-  
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       expandedAlignment: Alignment.topLeft,
       childrenPadding: EdgeInsets.symmetric(
-        horizontal: context.width * 0.045,
+        horizontal: 0,
         vertical: context.height * 0.01,
       ),
-      title: MainPageTaskListTileTitle(task: task,value: value,),
+      title: MainPageTaskListTileTitle(
+        task: task,
+        value: value,
+      ),
       children: [MainPageTaskListTileChild(task: task)],
     );
   }

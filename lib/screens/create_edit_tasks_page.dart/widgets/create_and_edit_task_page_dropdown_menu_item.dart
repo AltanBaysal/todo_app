@@ -25,7 +25,7 @@ class CreateAndEditPageDropdownMenuItem extends StatelessWidget {
           width: context.width * 0.03,
         ),
         Text(
-          importanceLevel.importanceLevelText,
+          importanceLevel.text,
           style: TextStyle(
             fontSize: context.width * 0.04,
           ),
