@@ -35,3 +35,31 @@ class MainPage extends StatelessWidget {
     );
   }
 }
+
+
+class A extends StatelessWidget implements PreferredSizeWidget{
+  const A({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+        leading: const MainPageAppBarLeading(),        
+        actions: [
+          Consumer<MainPageController>(
+            builder: (
+              BuildContext context,
+              MainPageController value,
+              Widget? child,
+            ) {
+              return MainPageAppBarActions(
+                mainPageMod: value.mainPageMod,
+              );
+            },
+          )
+        ],
+      );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}

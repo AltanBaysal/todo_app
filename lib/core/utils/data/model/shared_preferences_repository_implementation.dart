@@ -1,8 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_app/models/shared_preferences_reading_parameter_model.dart';
-import 'package:todo_app/models/shared_preferences_deleting_parameter_model.dart';
-import 'package:todo_app/models/shared_preferences_writing_parameter_model.dart';
-import 'package:todo_app/utils/shared_preferences_repository.dart';
+import 'package:todo_app/core/utils/data/model/shared_preferences_deleting_parameter_model.dart';
+import 'package:todo_app/core/utils/data/model/shared_preferences_reading_parameter_model.dart';
+import 'package:todo_app/core/utils/domain/shared_preferences_repository.dart';
+
+import '../shared_preferences_writing_parameter_model.dart';
 
 class SharedPreferencesRepositoryImplementation implements SharedPreferencesRepository{
   
@@ -13,9 +14,6 @@ class SharedPreferencesRepositoryImplementation implements SharedPreferencesRepo
   factory SharedPreferencesRepositoryImplementation(){
     return _instance ??= SharedPreferencesRepositoryImplementation._();
   }
-  
-  //? metodlar static yazmaya çalıştığımda başka dosyadan implement ettiğim için sıkıntı çıkıyor araştırdığıma göre yapılması doğru bir şey değilmiş
-  // o yüzden singelton olarak yazdım
 
   late final SharedPreferences _preferences;
 
@@ -23,7 +21,7 @@ class SharedPreferencesRepositoryImplementation implements SharedPreferencesRepo
 
   @override
   Future<void> delete(SharedPreferencesDeletingParameterModel paramater) async {
-    await _preferences.remove(paramater.key);
+    await _preferences.remove(paramater.key); //! nasıl çalıştığını araştır
   }
 
   @override
@@ -35,5 +33,4 @@ class SharedPreferencesRepositoryImplementation implements SharedPreferencesRepo
   Future<void> write(SharedPreferencesWritingParameterModel paramater) async {
     await _preferences.setString(paramater.key, paramater.value);
   }
-
 }

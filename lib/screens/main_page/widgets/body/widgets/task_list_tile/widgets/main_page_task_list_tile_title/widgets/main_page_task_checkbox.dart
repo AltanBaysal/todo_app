@@ -4,9 +4,9 @@ import 'package:todo_app/controllers/main_page_controller.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/task_list_extensions.dart';
 
-//? bu isimlendirme tam yansıtıyor mu emin olamadım ?
-class MainPageTaskListTitleTaskCheckedBox extends StatelessWidget {
-  const MainPageTaskListTitleTaskCheckedBox({
+
+class MainPageTaskCheckbox extends StatelessWidget {
+  const MainPageTaskCheckbox({
     Key? key,
     required this.taskId,
   }) : super(key: key);

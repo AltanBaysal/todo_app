@@ -1,7 +1,7 @@
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:uuid/uuid.dart';
 
-//? bunun dışında diğer classların yeri model değil gibi sanki
+
 class Task {
   String title;
   String description;

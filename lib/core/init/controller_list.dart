@@ -4,7 +4,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:todo_app/controllers/create_and_edit_task_controller.dart'; 
 import 'package:todo_app/controllers/main_page_controller.dart';
 
-//? baktığım videoda SingleChildClonebleWidget kullanılmış SingleChildWidget yerine farkı tam olarak ne ? video =>  https://youtu.be/kcnygitJDt8?t=547
+
 List<SingleChildWidget> controllerList = [ 
   ChangeNotifierProvider<MainPageController>(create: (BuildContext context) => MainPageController()),
   ChangeNotifierProvider<CreateAndEditTaskController>(create: (BuildContext context) => CreateAndEditTaskController()),

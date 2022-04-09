@@ -4,12 +4,12 @@ import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:todo_app/core/enums/main_page_mod.dart';
 import 'package:todo_app/core/enums/shared_preferences_keys.dart';
 import 'package:todo_app/core/enums/sort_task_by.dart';
+import 'package:todo_app/core/utils/data/model/shared_preferences_reading_parameter_model.dart';
+import 'package:todo_app/core/utils/data/model/shared_preferences_repository_implementation.dart';
+import 'package:todo_app/core/utils/data/shared_preferences_writing_parameter_model.dart';
 import 'package:todo_app/models/main_page_task_list_selector_values_model.dart';
-import 'package:todo_app/models/shared_preferences_reading_parameter_model.dart';
-import 'package:todo_app/models/shared_preferences_writing_parameter_model.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
-import 'package:todo_app/utils/shared_preferences_repository_implementation.dart';
 
 //! providerları geliştir
 class MainPageController with ChangeNotifier {
@@ -18,18 +18,18 @@ class MainPageController with ChangeNotifier {
   List<Task> _tasks = [];
   final List<Task> selectedTasks = [];
 
+  //! provider constructer'ına ver
   void init() {
     _tasks = _getTask;
   }
 
-  //Local Save
-  //? bu fonksiyon çok kötü oldu
+  //Local Storage
   List<Task> get _getTask {
     SharedPreferencesReadingParameterModel paramater =
         SharedPreferencesReadingParameterModel(SharedPreferencesKeys.taskList);
-    if (SharedPreferencesRepositoryImplementation().read(paramater) != null) {
-      return jsonDecode(
-          SharedPreferencesRepositoryImplementation().read(paramater)!);
+    String? data = SharedPreferencesRepositoryImplementation().read(paramater);
+    if (data != null) {
+      return jsonDecode(data);
     }
     return [];
   }
@@ -43,6 +43,7 @@ class MainPageController with ChangeNotifier {
     );
     await SharedPreferencesRepositoryImplementation().write(paramater);
   }
+  //
 
   //Getters
   List<Task> get tasks => _tasks;
@@ -101,12 +102,14 @@ class MainPageController with ChangeNotifier {
     required Task task,
     required Task newTask,
   }) {
-    task.title = newTask.title;
-    task.description = newTask.description;
-    task.importanceLevel = newTask.importanceLevel;
-    task.deadLine = newTask.deadLine;
-    saveTasks();
-    notifyListeners();
+    if (task != newTask) {
+      task.title = newTask.title;
+      task.description = newTask.description;
+      task.importanceLevel = newTask.importanceLevel;
+      task.deadLine = newTask.deadLine;
+      saveTasks();
+      notifyListeners();
+    }
   }
 
   void createNewTask({

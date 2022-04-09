@@ -4,10 +4,11 @@ import 'package:todo_app/core/init/controller_list.dart';
 import 'package:todo_app/core/services/global_build_context_services.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/main_page/main_page.dart';
-import 'package:todo_app/utils/shared_preferences_repository_implementation.dart';
+import 'core/utils/data/model/shared_preferences_repository_implementation.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesRepositoryImplementation().init();
   runApp(
     MultiProvider(
       providers: controllerList,
@@ -26,13 +27,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState(){
-    super.initState();
-    SharedPreferencesRepositoryImplementation().init();
-  }
-  @override
   Widget build(BuildContext context){
-    context.providerOfMainPageController.init();  //? bunu init state e yazmak isterdim ama context malum, burası doğru yer mi?
+    context.providerOfMainPageController.init();
     GlobalBuildContextService(globalContext: context);
 
     return const MaterialApp(
@@ -45,3 +41,4 @@ class _MyAppState extends State<MyApp> {
 
 
 //! any i araştır list için
+//! fromJson toJson fonksiyonlarını kullnarak düzenle

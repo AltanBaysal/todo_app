@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_title/widgets/main_page_task_list_tile_title_task_remain_time_indicator.dart';
 import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_title/widgets/main_page_task_list_tile_title_task_svg_view.dart';
 import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_title/widgets/main_page_task_list_tile_title_task_title.dart';
-import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_title/widgets/main_page_task_list_title_task_select_toggle.dart';
+import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_title/widgets/main_page_task_checkbox.dart';
 
 class MainPageTaskListTileTitle extends StatelessWidget {
   const MainPageTaskListTileTitle({
@@ -19,8 +19,8 @@ class MainPageTaskListTileTitle extends StatelessWidget {
       children: [
         Row(
           children: [
-            MainPageTaskListTitleTaskCheckedBox(taskId: taskId),
-            //?bunları constant yapmak için bir fikrin var mı?
+            MainPageTaskCheckbox(taskId: taskId),
+  
             MainPageTaskListTileTitleTaskSvgView(taskId: taskId),
 
             MainPageTaskListTileTaskTitle(taskId: taskId),

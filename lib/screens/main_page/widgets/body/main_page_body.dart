@@ -12,6 +12,7 @@ class MainPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: context.height * 0.005),
+      //! selector2 kullanrak birden fazla input alabilirsin
       child: Selector<MainPageController,MainPageTaskListSelectorValuesModel>(
         selector: (
           BuildContext context,
@@ -24,7 +25,7 @@ class MainPageBody extends StatelessWidget {
           MainPageTaskListSelectorValuesModel value,
           child,
         ) {
-          List<Task> taskList = context.providerOfMainPageController.taskListInSelectedOrder; //? bunu burda tanımlamak daha mantıklı builderın içinde tanımlasam fonksiyon task listesi uzunluğu kadar tekrarlanacak
+          List<Task> taskList = context.providerOfMainPageController.taskListInSelectedOrder; 
           return ListView.builder(
             itemCount: value.taskListLenght,
             itemBuilder: (
