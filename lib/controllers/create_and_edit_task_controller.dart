@@ -53,13 +53,14 @@ class CreateAndEditTaskController with ChangeNotifier {
   }
 
   String? titleValidator(String? value) {
-    if (value == null || value.isEmpty) return EnglishTexts.thisFieldCannotBeLeftBlank;
+    if (value == null || value.isEmpty) {
+      return EnglishTexts.thisFieldCannotBeLeftBlank;
+    }
     return null;
   }
 
   bool get isTitleValidate {
-    if (titleValidator(titleFormFieldController.text) == null) return true;
-    return false;
+    return titleValidator(titleFormFieldController.text) == null;
   }
 
   bool get isDeadLineUsable =>
@@ -68,35 +69,36 @@ class CreateAndEditTaskController with ChangeNotifier {
   bool get areAllAreasFormValidate => isDeadLineUsable && isTitleValidate;
 
   void createNewTask() {
-    Task newTask = Task(
-      title: titleFormFieldController.text,
-      description: descriptionFormFieldController.text,
-      importanceLevel: selectedImportanceLevel,
-      deadLine: selectedDeadLine,
-    );
-
-    GlobalBuildContextService().globalBuildContext.providerOfMainPageController.addToTaskListWithNotifyListener(
-      newTask: newTask,
-      tasklist: GlobalBuildContextService().globalBuildContext.providerOfMainPageController.tasks,
-    );
+    GlobalBuildContextService()
+        .globalBuildContext
+        .providerOfMainPageController
+        .createNewTask(
+          title: titleFormFieldController.text,
+          description: descriptionFormFieldController.text,
+          importanceLevel: selectedImportanceLevel,
+          deadLine: selectedDeadLine,
+        );
   }
 
   void editSelectedTask() {
-    GlobalBuildContextService().globalBuildContext.providerOfMainPageController.editTask(
-      task: selectedTask!,
-      newTask: Task(
-        title: titleFormFieldController.text,
-        description: descriptionFormFieldController.text,
-        importanceLevel: selectedImportanceLevel,
-        deadLine: selectedDeadLine,
-      ),
-    );
+    GlobalBuildContextService()
+        .globalBuildContext
+        .providerOfMainPageController
+        .editTask(
+          task: selectedTask!,
+          newTask: Task(
+            title: titleFormFieldController.text,
+            description: descriptionFormFieldController.text,
+            importanceLevel: selectedImportanceLevel,
+            deadLine: selectedDeadLine,
+          ),
+        );
   }
-  
-  void setPageSetting({Task? task}){
-    if(task == null){
+
+  void setPageSetting({Task? task}) {
+    if (task == null) {
       setPageSettingsForCreate();
-    }else{
+    } else {
       setPageSettingsForEdit(task);
     }
   }

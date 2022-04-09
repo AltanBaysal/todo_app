@@ -1,1 +1,1 @@
-enum SharedPreferencesKeys{key}
+enum SharedPreferencesKeys{taskList,}

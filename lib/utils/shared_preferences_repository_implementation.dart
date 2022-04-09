@@ -28,10 +28,7 @@ class SharedPreferencesRepositoryImplementation implements SharedPreferencesRepo
 
   @override
   String? read(SharedPreferencesReadingParameterModel paramater) {
-    //? burayı bir tık geliştirdim
-    String? value = _preferences.getString(paramater.key);
-    if(value == null) throw Exception("Value not found");
-    return value;
+    return _preferences.getString(paramater.key);
   }
 
   @override

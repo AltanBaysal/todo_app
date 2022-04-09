@@ -12,23 +12,25 @@ class CreateAndEditTaskPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const CreateAndEditTaskPageTitleTextField(),
-        const CreateAndEditTaskPageDropdownMenu(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
-            CreateAndEditTaskPageDatePicker(),
-            CreateAndEditTaskPageTimePicker(),
-          ],
-        ),
-        const CreateAndEditTaskPageDescriptionTextField(),
-        CreateOrEditButtonByCreateAndEditPageMod(
-          createAndEditPageMod:
-             context.providerOfCreateAndEditTaskController.createAndEditPageMod,
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const CreateAndEditTaskPageTitleTextField(),
+          const CreateAndEditTaskPageDropdownMenu(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              CreateAndEditTaskPageDatePicker(),
+              CreateAndEditTaskPageTimePicker(),
+            ],
+          ),
+          const CreateAndEditTaskPageDescriptionTextField(),
+          CreateOrEditButtonByCreateAndEditPageMod(
+            createAndEditPageMod:
+               context.providerOfCreateAndEditTaskController.createAndEditPageMod,
+          ),
+        ],
+      ),
     );
   }
 }
