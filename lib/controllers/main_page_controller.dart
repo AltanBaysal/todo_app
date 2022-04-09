@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/enums/main_page_mod.dart';
 import 'package:todo_app/core/enums/sort_task_by.dart';
+import 'package:todo_app/models/main_page_task_list_selector_values_model.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
 //! providerları geliştir
 class MainPageController with ChangeNotifier {
-  TaskSortingType sortTaskBy = TaskSortingType.deadline;
+  TaskSortingType taskSortingType = TaskSortingType.deadline;
   MainPageMod mainPageMod = MainPageMod.listing;
   final List<Task> _tasks = [];
   final List<Task> selectedTasks = [];
 
   List<Task> get tasks => _tasks;
-  List<Task> get taskListInSelectedOrder =>
-      sortTaskBy.sortTaskList(taskList: _tasks);
+  List<Task> get taskListInSelectedOrder =>taskSortingType.sortTaskList(taskList: _tasks);
   bool get isTaskCheckboxVisible => mainPageMod == MainPageMod.select;
+  //? isimlendirme
+  MainPageTaskListSelectorValuesModel get mainPageTaskListSelectorValues => MainPageTaskListSelectorValuesModel(_tasks.length, taskSortingType);
 
   bool isCheckboxChecked(Task task) {
     return selectedTasks.contains(task);
@@ -22,10 +24,10 @@ class MainPageController with ChangeNotifier {
 
   void toggleTaskSortType() {
     //! bunu geliştir
-    if (sortTaskBy == TaskSortingType.deadline) {
-      sortTaskBy = TaskSortingType.importanceAndDeadline;
+    if (taskSortingType == TaskSortingType.deadline) {
+      taskSortingType = TaskSortingType.importanceAndDeadline;
     } else {
-      sortTaskBy = TaskSortingType.deadline;
+      taskSortingType = TaskSortingType.deadline;
     }
     notifyListeners();
   }

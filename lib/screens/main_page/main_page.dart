@@ -12,6 +12,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //! appbar ı farklı widget a koy
+      //? appbar'ı farklı widget'a koymaya çalıştığımda PreferredSizeWidget diyor taşıttırmıyor 
       appBar: AppBar(
         leading: const MainPageAppBarLeading(),        
         actions: [

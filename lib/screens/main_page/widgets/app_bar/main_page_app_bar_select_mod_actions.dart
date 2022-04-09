@@ -30,8 +30,11 @@ class MainPageAppBarSelectModActions extends StatelessWidget {
         ),
         CustomIconButton(
           icon: Icons.close,
-          onTap: () => context.providerOfMainPageController
-              .setMainPageMod(MainPageMod.listing),
+          onTap: () {
+            context.providerOfMainPageController
+                .setMainPageMod(MainPageMod.listing);
+            context.providerOfMainPageController.selectedTasks.clear();
+          },
         ),
       ],
     );
