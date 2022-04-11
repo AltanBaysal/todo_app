@@ -1,6 +1,7 @@
 import 'package:todo_app/core/enums/importance_level_enum.dart';
 import 'package:uuid/uuid.dart';
 
+// bunuda utils'e taşımamı ister misin?
 class Task {
   String title;
   String description;
@@ -31,18 +32,21 @@ class Task {
   Task.fromJson(Map<String, dynamic> json)
       : title = json["title"],
         description = json["description"],
-        importanceLevel = json["importanceLevel"],
-        deadLine = json["deadLine"],
-        _creationDate = json["_creationDate"],
+        importanceLevel = ImportanceLevel.values[json["importanceLevel"]], //? enum'ı direkt almadığı için böyle bir yöntem kullandım
+        deadLine = DateTime.parse( json["deadLine"]),  //? dateline kayıt etmek için 2 yöntem buldum hangisi kullanması daha mantıklı sence?
+        _creationDate = DateTime.fromMillisecondsSinceEpoch(json["_creationDate"]),
         _id = json["_id"],
-        _isCompleted = json["_isCompleted"];
+        _isCompleted = json["_isCompleted"]{
+          print(deadLine);
+          print(_creationDate);
+        }
 
   Map<String,dynamic> get toJson => {
     "title" : title,
     "description" : description,
-    "importanceLevel" : importanceLevel,
-    "deadLine" : deadLine,
-    "_creationDate" : _creationDate,
+    "importanceLevel" : importanceLevel.index,
+    "deadLine" : deadLine.toIso8601String(),
+    "_creationDate" : _creationDate.millisecondsSinceEpoch,
     "_id" :_id ,
     "_isCompleted" : _isCompleted,
   };

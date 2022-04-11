@@ -13,7 +13,9 @@ class MainPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: context.height * 0.005),
-      //! selector2 kullanarak birden fazla input alabilirsin //? tuple kullandım provider package sayfasında onu öneriyordu
+      //! selector2 kullanarak birden fazla input alabilirsin 
+      ////? tuple kullandım provider package sayfasında onu öneriyordu 
+      //ama tuple kullanınça değerler item1 item2 şeklinde oluyor ve okunabilirliği azaltıyor
       child: Selector<MainPageController,Tuple2<int,TaskSortingType>>(
         selector: (
           BuildContext context,
@@ -26,7 +28,6 @@ class MainPageBody extends StatelessWidget {
           Tuple2 value,
           child,
         ) {
-          print("sa");
           List<Task> taskList = context.providerOfMainPageController.taskListInSelectedOrder; 
           return ListView.builder(
             itemCount: value.item1,

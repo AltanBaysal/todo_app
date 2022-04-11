@@ -37,6 +37,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+//? uygulama açılırken svgler biraz geç geliyor o sorunu nasıl çözebilirim ? 
+//precacheImage(AssetImage("images/logo_rienpa.png"), context); kullanmak mantıklı mı?
 
 //! any i araştır list için
-//! fromJson toJson fonksiyonlarını kullnarak düzenle

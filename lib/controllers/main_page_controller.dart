@@ -10,7 +10,7 @@ import 'package:todo_app/core/utils/data/shared_preferences_writing_parameter_mo
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
-//! providerları geliştir
+//! providerları düzelt
 class MainPageController with ChangeNotifier {
   TaskSortingType taskSortingType = TaskSortingType.deadline;
   MainPageMod mainPageMod = MainPageMod.listing;
@@ -23,19 +23,20 @@ class MainPageController with ChangeNotifier {
 
 
   //Local Storage
-  //? get taskla save task!i provider dışına yazmamı ister misin?
+  //? get taskla save task'ı provider dışına yazmamı ister misin?
   List<Task> get _getTask {
     SharedPreferencesReadingParameterModel paramater =
         SharedPreferencesReadingParameterModel(SharedPreferencesKeys.taskList);
     String? data = SharedPreferencesRepositoryImplementation().read(paramater);
     if (data != null) {
-      return jsonDecode(data);
+      List<dynamic> taskData = jsonDecode(data);  //? taskData isimlendirmesi tam olmadı sanırım
+      return taskData.map((json) => Task.fromJson(json)).toList();
     }
     return [];
   }
 
   void saveTasks() async {
-    String json = jsonEncode(_tasks);
+    String json = jsonEncode(_tasks.map((task) => task.toJson).toList()); //? burayı parçalama mı ister misin yoksa yeterince okunabilir mi?
     SharedPreferencesWritingParameterModel paramater =
         SharedPreferencesWritingParameterModel(
       SharedPreferencesKeys.taskList,
