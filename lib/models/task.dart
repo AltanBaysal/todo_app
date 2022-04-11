@@ -36,10 +36,7 @@ class Task {
         deadLine = DateTime.parse( json["deadLine"]),  //? dateline kayıt etmek için 2 yöntem buldum hangisi kullanması daha mantıklı sence?
         _creationDate = DateTime.fromMillisecondsSinceEpoch(json["_creationDate"]),
         _id = json["_id"],
-        _isCompleted = json["_isCompleted"]{
-          print(deadLine);
-          print(_creationDate);
-        }
+        _isCompleted = json["_isCompleted"];
 
   Map<String,dynamic> get toJson => {
     "title" : title,

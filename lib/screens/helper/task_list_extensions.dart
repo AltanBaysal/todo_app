@@ -1,5 +1,7 @@
 import 'package:todo_app/core/enums/importance_level_enum.dart';
+import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
 extension TaskListExtensions on List<Task> {  
   List<Task> get inTimeOrderEndWithAchievedTask{
@@ -43,6 +45,12 @@ extension TaskListExtensions on List<Task> {
 
   Task findTaskById(String taskId){
     return firstWhere((task) => task.id == taskId);
+  }
+  
+
+  //? bunu providerdan buraya taşıdım
+  List<Task> inSelectedOrder(TaskSortingType taskSortingType) {
+    return taskSortingType.sortTaskList(taskList: this);
   }
   
 } 

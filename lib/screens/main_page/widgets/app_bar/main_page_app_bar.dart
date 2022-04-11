@@ -11,7 +11,7 @@ class MainPageAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        leading: const MainPageAppBarLeading(),        
+        leading: const MainPageAppBarLeading(),         
         actions: [
           Consumer<MainPageController>(
             builder: (

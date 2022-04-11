@@ -8,7 +8,6 @@ import 'package:todo_app/core/utils/data/model/shared_preferences_reading_parame
 import 'package:todo_app/core/utils/data/model/shared_preferences_repository_implementation.dart';
 import 'package:todo_app/core/utils/data/shared_preferences_writing_parameter_model.dart';
 import 'package:todo_app/models/task.dart';
-import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
 //! providerları düzelt
 class MainPageController with ChangeNotifier {
@@ -20,7 +19,6 @@ class MainPageController with ChangeNotifier {
   MainPageController(){
     _tasks = _getTask;
   }
-
 
   //Local Storage
   //? get taskla save task'ı provider dışına yazmamı ister misin?
@@ -48,10 +46,6 @@ class MainPageController with ChangeNotifier {
 
   //Getters
   List<Task> get tasks => _tasks;
-
-  List<Task> get taskListInSelectedOrder {
-    return taskSortingType.sortTaskList(taskList: _tasks);
-  }
 
   bool get isTaskCheckboxVisible => mainPageMod == MainPageMod.select;
   //

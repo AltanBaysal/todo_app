@@ -18,7 +18,7 @@ class MainPageAppBarActions extends StatelessWidget {
       case MainPageMod.select:
         return const MainPageAppBarSelectModActions();
       case MainPageMod.listing:
-        return const MainPageAppBarNormalModActions();
+        return const MainPageAppBarListingModActions();
     }
   }
 }
