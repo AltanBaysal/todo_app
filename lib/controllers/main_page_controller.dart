@@ -7,7 +7,6 @@ import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/core/utils/data/model/shared_preferences_reading_parameter_model.dart';
 import 'package:todo_app/core/utils/data/model/shared_preferences_repository_implementation.dart';
 import 'package:todo_app/core/utils/data/shared_preferences_writing_parameter_model.dart';
-import 'package:todo_app/models/main_page_task_list_selector_values_model.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 
@@ -15,15 +14,16 @@ import 'package:todo_app/screens/helper/sort_task_by_extensions.dart';
 class MainPageController with ChangeNotifier {
   TaskSortingType taskSortingType = TaskSortingType.deadline;
   MainPageMod mainPageMod = MainPageMod.listing;
-  List<Task> _tasks = [];
+  late List<Task> _tasks;
   final List<Task> selectedTasks = [];
 
-  //! provider constructer'ına ver
-  void init() {
+  MainPageController(){
     _tasks = _getTask;
   }
 
+
   //Local Storage
+  //? get taskla save task!i provider dışına yazmamı ister misin?
   List<Task> get _getTask {
     SharedPreferencesReadingParameterModel paramater =
         SharedPreferencesReadingParameterModel(SharedPreferencesKeys.taskList);
@@ -54,14 +54,6 @@ class MainPageController with ChangeNotifier {
 
   bool get isTaskCheckboxVisible => mainPageMod == MainPageMod.select;
   //
-
-  //? isimlendirme
-  MainPageTaskListSelectorValuesModel get mainPageTaskListSelectorValues {
-    return MainPageTaskListSelectorValuesModel(
-      _tasks.length,
-      taskSortingType,
-    );
-  }
 
   bool isCheckboxChecked(Task task) {
     return selectedTasks.contains(task);

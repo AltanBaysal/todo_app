@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/init/controller_list.dart';
 import 'package:todo_app/core/services/global_build_context_services.dart';
-import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/main_page/main_page.dart';
 import 'core/utils/data/model/shared_preferences_repository_implementation.dart';
 
@@ -28,7 +27,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context){
-    context.providerOfMainPageController.init();
     GlobalBuildContextService(globalContext: context);
 
     return const MaterialApp(
