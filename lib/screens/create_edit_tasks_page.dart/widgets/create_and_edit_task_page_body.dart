@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_description_text_field.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_dropdown_menu.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_time_picker.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_title_text_field.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_or_edit_button_by_create_and_edit_page_mod.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/date_and_time_pickers/create_and_edit_task_page_time_picker.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/buttons/create_or_edit_button_by_create_and_edit_page_mod.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/drop_down_menu/create_and_edit_task_page_dropdown_menu.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/text_fields/create_and_edit_task_page_description_text_field.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/text_fields/create_and_edit_task_page_title_text_field.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
-import 'create_and_edit_task_page_date_picker.dart';
+import 'date_and_time_pickers/create_and_edit_task_page_date_picker.dart';
 
 class CreateAndEditTaskPageBody extends StatelessWidget {
   const CreateAndEditTaskPageBody({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/enums/create_and_edit_task_page_mod.dart';
-import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/create_and_edit_task_page_create_button.dart';
-import 'create_and_edit_task_page_edit_button.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/buttons/create_and_edit_task_page_create_button.dart';
+import 'package:todo_app/screens/create_edit_tasks_page.dart/widgets/buttons/create_and_edit_task_page_edit_button.dart';
 
 class CreateOrEditButtonByCreateAndEditPageMod extends StatelessWidget {
   const CreateOrEditButtonByCreateAndEditPageMod({

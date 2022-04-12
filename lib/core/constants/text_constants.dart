@@ -28,6 +28,5 @@ class EnglishTexts{
 
   static const String thisFieldCannotBeLeftBlank = "This field cannot be left blank";
 
-  static const String timeOver = "Timer Over";
-  
+  static const String timeOver = "Timer Over";  
 }
