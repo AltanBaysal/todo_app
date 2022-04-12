@@ -6,8 +6,8 @@ import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/helper/task_sorting_type_extensions.dart';
 
-class TaskListViewSortingPopupMenuChild extends StatelessWidget {
-  const TaskListViewSortingPopupMenuChild({
+class TaskListSortingPopupMenuChild extends StatelessWidget {
+  const TaskListSortingPopupMenuChild({
     Key? key,
   }) : super(key: key);
 
@@ -18,10 +18,20 @@ class TaskListViewSortingPopupMenuChild extends StatelessWidget {
         return mainPageController.selectedTaskSortingType;
       },
       builder: (BuildContext context, TaskSortingType value, Widget? child) {
-        return Text(
-          EnglishTexts.sortBy +
-              context.providerOfMainPageController.selectedTaskSortingType.text, //? bu text'e string'i böyle vermek mantıklı mı?
-          style: TextStyle(fontSize: context.width * 0.035),
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              EnglishTexts.sortBy +
+                  context.providerOfMainPageController.selectedTaskSortingType
+                      .text, //? bu text'e string'i böyle vermek mantıklı mı?
+              style: TextStyle(fontSize: context.width * 0.035),
+            ),
+            Icon(
+              Icons.keyboard_arrow_down_sharp,
+              size: context.width * 0.04,
+            ),
+          ],
         );
       },
     );

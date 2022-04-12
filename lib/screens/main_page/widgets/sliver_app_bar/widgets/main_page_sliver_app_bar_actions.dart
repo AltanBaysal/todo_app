@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/enums/main_page_mod.dart';
-import 'main_page_app_bar_normal_mode_actions.dart';
-import 'main_page_app_bar_select_mod_actions.dart';
+import 'main_page_sliver_app_bar_normal_mode_actions.dart';
+import 'main_page_sliver_app_bar_select_mod_actions.dart';
 
 
-class MainPageAppBarActions extends StatelessWidget {
-  const MainPageAppBarActions({
+class MainPageSliverAppBarActions extends StatelessWidget {
+  const MainPageSliverAppBarActions({
     Key? key,
     required this.mainPageMod
   }) : super(key: key);
@@ -16,9 +16,9 @@ class MainPageAppBarActions extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (mainPageMod) {
       case MainPageMod.select:
-        return const MainPageAppBarSelectModActions();
+        return const MainPageSliverAppBarSelectModActions();
       case MainPageMod.listing:
-        return const MainPageAppBarListingModActions();
+        return const MainPageSliverAppBarListingModActions();
     }
   }
 }

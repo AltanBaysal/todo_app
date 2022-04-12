@@ -41,3 +41,4 @@ class _MyAppState extends State<MyApp> {
 //precacheImage(AssetImage("images/logo_rienpa.png"), context); kullanmak mantıklı mı?
 
 //! any i araştır list için
+//! sliver app bar ekle
