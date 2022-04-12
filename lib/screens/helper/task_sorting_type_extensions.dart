@@ -14,7 +14,7 @@ extension TaskSortingTypeExtensions on TaskSortingType{
   String get text{
     switch (this) {
       case TaskSortingType.deadline: return EnglishTexts.deadline;
-      case TaskSortingType.importanceAndDeadline: return EnglishTexts.importanceLevel;
+      case TaskSortingType.importanceAndDeadline: return EnglishTexts.importance;
     }
   }
 }

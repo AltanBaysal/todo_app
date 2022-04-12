@@ -20,6 +20,7 @@ class EnglishTexts{
   static const String edit = "Edit";
 
   static const String importanceLevel = "Importance Level";
+  static const String importance = "Importance";
   static const String creationDate = "Creation Date";
   static const String deadline = "Deadline";
   static const String totalDuration = "Total Duration";
@@ -29,4 +30,6 @@ class EnglishTexts{
   static const String thisFieldCannotBeLeftBlank = "This field cannot be left blank";
 
   static const String timeOver = "Timer Over";  
+
+  static const String sortBy = "Sort by: ";
 }

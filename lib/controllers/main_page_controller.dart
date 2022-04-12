@@ -11,7 +11,7 @@ import 'package:todo_app/models/task.dart';
 
 //! providerları düzelt
 class MainPageController with ChangeNotifier {
-  TaskSortingType taskSortingType = TaskSortingType.deadline;
+  TaskSortingType selectedTaskSortingType = TaskSortingType.deadline;
   MainPageMod mainPageMod = MainPageMod.listing;
   late List<Task> _tasks;
   final List<Task> selectedTasks = [];
@@ -54,15 +54,10 @@ class MainPageController with ChangeNotifier {
     return selectedTasks.contains(task);
   }
 
-  void toggleTaskSortType() {
-    //! bunu geliştir
-    if (taskSortingType == TaskSortingType.deadline) {
-      taskSortingType = TaskSortingType.importanceAndDeadline;
-    } else {
-      taskSortingType = TaskSortingType.deadline;
-    }
+  set setTaskSortingType(TaskSortingType taskSortingType){
+    selectedTaskSortingType = taskSortingType;
     notifyListeners();
-  }
+  } 
 
   void addToTaskListWithNotifyListener({
     required Task newTask,

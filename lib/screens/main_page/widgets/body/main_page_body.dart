@@ -7,6 +7,7 @@ import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/helper/task_list_extensions.dart';
 
 import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_view/task_list_view.dart';
+import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_view/widgets/task_list_view_sorting_popup_menu.dart';
 import 'package:tuple/tuple.dart';
 
 class MainPageBody extends StatelessWidget {
@@ -18,7 +19,11 @@ class MainPageBody extends StatelessWidget {
         padding: EdgeInsets.only(top: context.height * 0.005),
         child: Column(
           children: [
-            //!linkedindekinin aynısı yap
+            Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.symmetric(horizontal: context.width*0.04,vertical: context.height*0.01),
+              child: const TaskListViewSortingPopupMenu(),
+            ),
         //! selector2 kullanarak birden fazla input alabilirsin 
         ////? tuple kullandım provider package sayfasında onu öneriyordu 
         //ama tuple kullanınça değerler item1 item2 şeklinde oluyor ve okunabilirliği azaltıyor
@@ -28,7 +33,7 @@ class MainPageBody extends StatelessWidget {
                 MainPageController value,
               ) {
                 return Tuple2(value.tasks.withoutAchievedTask.length,
-                    value.taskSortingType);
+                    value.selectedTaskSortingType);
               },
               builder: (
                 BuildContext context,
