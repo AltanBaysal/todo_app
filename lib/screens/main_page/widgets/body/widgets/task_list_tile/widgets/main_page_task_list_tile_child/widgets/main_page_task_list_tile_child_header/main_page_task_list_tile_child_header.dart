@@ -6,7 +6,7 @@ import 'package:todo_app/screens/helper/duration_extensions.dart';
 import 'package:todo_app/screens/helper/importance_level_enum_extensions.dart';
 import 'package:todo_app/screens/helper/task_list_extensions.dart';
 import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_child/widgets/main_page_task_list_tile_child_header/widgets/main_page_task_list_tile_child_edit_button.dart';
-import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_child/widgets/main_page_task_list_tile_child_header/widgets/main_page_task_list_tile_child_text_covered_stadium_bordered_container.dart';
+import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_tile/widgets/main_page_task_list_tile_child/widgets/main_page_task_list_tile_child_header/widgets/main_page_task_info_bubble.dart';
 
 class MainPageTaskListTileChildHeader extends StatelessWidget {
   const MainPageTaskListTileChildHeader({
@@ -21,7 +21,7 @@ class MainPageTaskListTileChildHeader extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          MainPageTaskListTileChildTextCoveredStadiumBorderedContainer(
+          MainPageTaskInfoBubble(
             label: EnglishTexts.importanceLevel,
             selector: (
               BuildContext context,
@@ -33,7 +33,7 @@ class MainPageTaskListTileChildHeader extends StatelessWidget {
                   .text;
             },
           ),
-          MainPageTaskListTileChildTextCoveredStadiumBorderedContainer(
+          MainPageTaskInfoBubble(
             label: EnglishTexts.creationDate,
             selector: (
               BuildContext context,
@@ -45,7 +45,7 @@ class MainPageTaskListTileChildHeader extends StatelessWidget {
                   .text;
             },
           ),
-          MainPageTaskListTileChildTextCoveredStadiumBorderedContainer(
+          MainPageTaskInfoBubble(
             label: EnglishTexts.deadline,
             selector: (
               BuildContext context,
@@ -57,7 +57,7 @@ class MainPageTaskListTileChildHeader extends StatelessWidget {
                   .text;
             },
           ),
-          MainPageTaskListTileChildTextCoveredStadiumBorderedContainer(
+          MainPageTaskInfoBubble(
             label: EnglishTexts.totalDuration,
             selector: (
               BuildContext context,

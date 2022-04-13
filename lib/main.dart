@@ -38,7 +38,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 //? uygulama açılırken svgler biraz geç geliyor o sorunu nasıl çözebilirim ? 
-//precacheImage(AssetImage("images/logo_rienpa.png"), context); kullanmak mantıklı mı?
+//precacheImage(AssetImage("images/logo_rienpa.png"), context); kullanmak mantıklı mı? //! dene
 
+//! saniye sayacına bak
 //! any i araştır list için
 //! sliver app bar ekle

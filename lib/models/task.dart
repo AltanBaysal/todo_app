@@ -32,8 +32,8 @@ class Task {
   Task.fromJson(Map<String, dynamic> json)
       : title = json["title"],
         description = json["description"],
-        importanceLevel = ImportanceLevel.values[json["importanceLevel"]], //? enum'ı direkt almadığı için böyle bir yöntem kullandım
-        deadLine = DateTime.parse( json["deadLine"]),  //? dateline kayıt etmek için 2 yöntem buldum hangisi kullanması daha mantıklı sence?
+        importanceLevel = ImportanceLevel.values[json["importanceLevel"]],
+        deadLine = DateTime.parse( json["deadLine"]), 
         _creationDate = DateTime.fromMillisecondsSinceEpoch(json["_creationDate"]),
         _id = json["_id"],
         _isCompleted = json["_isCompleted"];
@@ -48,3 +48,5 @@ class Task {
     "_isCompleted" : _isCompleted,
   };
 }
+
+//ikiside doğru kullanım ıso8601 localizasyonda sıkıntı yaşıyor, millisecondsinceepoch ise performans olarak daha kötü

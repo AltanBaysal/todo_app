@@ -22,7 +22,7 @@ class MainPageTaskListTileChildDescription extends StatelessWidget {
       },
       builder: (
         BuildContext context,
-        description,
+        String description,
         Widget? child,
       ) {
         return Visibility(

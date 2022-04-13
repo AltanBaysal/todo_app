@@ -21,20 +21,19 @@ class MainPageController with ChangeNotifier {
   }
 
   //Local Storage
-  //? get taskla save task'ı provider dışına yazmamı ister misin?
   List<Task> get _getTask {
     SharedPreferencesReadingParameterModel paramater =
         SharedPreferencesReadingParameterModel(SharedPreferencesKeys.taskList);
     String? data = SharedPreferencesRepositoryImplementation().read(paramater);
     if (data != null) {
-      List<dynamic> taskData = jsonDecode(data);  //? taskData isimlendirmesi tam olmadı sanırım
+      List<dynamic> taskData = jsonDecode(data); 
       return taskData.map((json) => Task.fromJson(json)).toList();
     }
     return [];
   }
 
   void saveTasks() async {
-    String json = jsonEncode(_tasks.map((task) => task.toJson).toList()); //? burayı parçalama mı ister misin yoksa yeterince okunabilir mi?
+    String json = jsonEncode(_tasks.map((task) => task.toJson).toList()); 
     SharedPreferencesWritingParameterModel paramater =
         SharedPreferencesWritingParameterModel(
       SharedPreferencesKeys.taskList,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/enums/sort_task_by.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_sorting_popup/task_list_sorting_popup_menu_child.dart';
-import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_sorting_popup/task_list_sorting_popup_menu_item_list.dart';
+import 'package:todo_app/screens/main_page/widgets/body/widgets/task_list_sorting_popup/task_list_sorting_popup_menu_item.dart';
 
 class TaskListSortingPopupMenu extends StatelessWidget {
   const TaskListSortingPopupMenu({Key? key}) : super(key: key);
@@ -24,4 +24,20 @@ class TaskListSortingPopupMenu extends StatelessWidget {
       ),
     );
   }
+
+  List<PopupMenuItem<TaskSortingType>>
+    get taskListSortingPopupMenuItemList {
+  return TaskSortingType.values.map(
+    (TaskSortingType taskSortingType) {
+      return PopupMenuItem<TaskSortingType>(
+        child: TaskListSortingPopupMenuItem(
+          taskSortingType: taskSortingType,
+        ),
+        value: taskSortingType,
+      );
+    },
+  ).toList();
 }
+}
+
+

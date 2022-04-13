@@ -47,8 +47,6 @@ extension TaskListExtensions on List<Task> {
     return firstWhere((task) => task.id == taskId);
   }
   
-
-  //? bunu providerdan buraya taşıdım
   List<Task> inSelectedOrder(TaskSortingType taskSortingType) {
     return taskSortingType.sortTaskList(taskList: this);
   }

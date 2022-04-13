@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/main_page_controller.dart';
 import 'package:todo_app/screens/helper/build_context_extension.dart';
 
-//? buna daha kısa bir isim ?
-class MainPageTaskListTileChildTextCoveredStadiumBorderedContainer
+class MainPageTaskInfoBubble
     extends StatelessWidget {
-  const MainPageTaskListTileChildTextCoveredStadiumBorderedContainer({
+  const MainPageTaskInfoBubble({
     Key? key,
     this.color,
     this.label,
@@ -43,6 +42,7 @@ class MainPageTaskListTileChildTextCoveredStadiumBorderedContainer
                   fontSize: context.width * 0.028, color: Colors.grey[700]),
             ),
           ),
+          //! düzenle
           //? bu kullanım mantıklı mı sırf sadece text'i düzeltsin ve her yerde selector yazılmasın diye kurtuluş savaşı verdim resmen
           Selector<MainPageController, String>(
             selector: selector,

@@ -24,7 +24,7 @@ class TaskListSortingPopupMenuChild extends StatelessWidget {
             Text(
               EnglishTexts.sortBy +
                   context.providerOfMainPageController.selectedTaskSortingType
-                      .text, //? bu text'e string'i böyle vermek mantıklı mı?
+                      .text,
               style: TextStyle(fontSize: context.width * 0.035),
             ),
             Icon(
